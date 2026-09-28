@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-:root{
+:root, :root[data-theme]{
+  color-scheme:light;
   --bg:#F6FAF7; --surface:#FFFFFF; --surface-2:#EDF5F0; --line:#DCE9E1;
   --ink:#1F3A2C; --ink-2:#4A6857; --ink-3:#7A9687;
   --accent:#3E9068; --accent-ink:#FFFFFF; --navy:#E6F2EA;
@@ -19,28 +20,6 @@
   --shadow:0 1px 2px rgba(16,40,27,.06),0 4px 16px rgba(16,40,27,.05);
   --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  color-scheme:dark;
-  --bg:#0B1510; --surface:#12211A; --surface-2:#192C22; --line:#253E30;
-  --ink:#E5F1E9; --ink-2:#A7C4B2; --ink-3:#7B9A87;
-  --accent:#7CC39C; --accent-ink:#0B1510; --navy:#10201A;
-  --s0:#3F7359; --s1:#4A8165; --s2:#568F72; --s3:#639D7F; --s4:#72AB8D; --s5:#84B99C; --s6:#7CC39C;
-  --src-ig:#EE7AA5; --src-tt:#5CCFD9; --src-fb:#7FA3EC; --src-th:#AE96E6; --src-x:#D5D9E0; --src-oh:#7CC39C; --src-expo:#E8BE5C; --src-road:#F0976D; --src-ref:#C89E77; --src-web:#9EABBA;
-  --g-social:#86AFD6; --g-oh:#7CC39C; --g-event:#D9B766;
-  --bad:#EF7B70; --warn:#E6B54A; --good:#6FCB86;
-  --shadow:0 1px 2px rgba(0,0,0,.3);
-}}
-:root[data-theme="dark"]{
-  color-scheme:dark;
-  --bg:#0B1510; --surface:#12211A; --surface-2:#192C22; --line:#253E30;
-  --ink:#E5F1E9; --ink-2:#A7C4B2; --ink-3:#7B9A87;
-  --accent:#7CC39C; --accent-ink:#0B1510; --navy:#10201A;
-  --s0:#3F7359; --s1:#4A8165; --s2:#568F72; --s3:#639D7F; --s4:#72AB8D; --s5:#84B99C; --s6:#7CC39C;
-  --src-ig:#EE7AA5; --src-tt:#5CCFD9; --src-fb:#7FA3EC; --src-th:#AE96E6; --src-x:#D5D9E0; --src-oh:#7CC39C; --src-expo:#E8BE5C; --src-road:#F0976D; --src-ref:#C89E77; --src-web:#9EABBA;
-  --g-social:#86AFD6; --g-oh:#7CC39C; --g-event:#D9B766;
-  --bad:#EF7B70; --warn:#E6B54A; --good:#6FCB86;
-  --shadow:0 1px 2px rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
 html,body{min-height:100%}
