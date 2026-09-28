@@ -39,3 +39,12 @@ Tracked stages: Open House Registration → Form Purchase → Assessment (Test) 
 ## Sample data
 
 There are 100 generated leads covering every stage, plus some dropped leads. The data is seeded, so it is the same on every load. All names, contacts and numbers are fictional. Changes made in the UI reset when the page reloads.
+
+## System diagrams
+
+Open `diagram.html` in a browser for the interactive version. High-resolution PNGs (3120 px wide) are in `docs/diagrams/`:
+
+- [1-gambaran-sistem.png](docs/diagrams/1-gambaran-sistem.png): system overview (sources → lead record → screens)
+- [2-alur-pendaftaran.png](docs/diagrams/2-alur-pendaftaran.png): enrollment flowchart with follow-up and dropped paths
+- [3-login-hak-akses.png](docs/diagrams/3-login-hak-akses.png): login and role access
+- [4-data-per-tahap.png](docs/diagrams/4-data-per-tahap.png): data recorded at each stage

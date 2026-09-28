@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enrollment System Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root, :root[data-theme]{
+  color-scheme:light;
+  --bg:#F6FAF7; --surface:#FFFFFF; --surface-2:#EDF5F0; --line:#DCE9E1; --line-2:#B9CFC2;
+  --ink:#1F3A2C; --ink-2:#4A6857; --ink-3:#7A9687;
+  --accent:#3E9068; --accent-soft:#E1F0E7;
+  --warn:#B7862A; --warn-soft:#FBF3E2; --bad:#C4554A; --bad-soft:#FBEAE8;
+  --src-ig:#D6457A; --src-tt:#23AEBB; --src-fb:#3B6FD1; --src-th:#8467C7; --src-x:#2B2F36; --src-oh:#3E9068; --src-expo:#D9A02B; --src-road:#E0703F; --src-ref:#A6784F; --src-web:#7F8C9B;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;padding-inline:20px}
+.wrap{max-width:1040px;margin:0 auto;padding-block:40px 64px;display:grid;gap:40px}
+h1,h2{margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4vw,38px);font-weight:800;line-height:1.15}
+h2{font-size:21px;font-weight:800}
+p{margin:0}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--ink-2);max-width:64ch;margin-top:10px}
+header{display:grid;gap:6px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.toc a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:99px}
+.toc a:hover{border-color:var(--accent)}
+section{display:grid;gap:14px}
+section > p{color:var(--ink-2);max-width:68ch}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px}
+.scroll{overflow-x:auto}
+figcaption{font-size:13.5px;color:var(--ink-2);max-width:78ch;border-top:1px solid var(--line);padding-top:12px}
+figcaption b{color:var(--ink)}
+svg{display:block;width:100%;height:auto;color:var(--ink-2);font-family:var(--font)}
+#f1 svg{min-width:780px}
+#f2 svg{min-width:560px;max-width:800px;margin:0 auto}
+#f3 svg{min-width:760px}
+.n{fill:var(--surface);stroke:var(--line-2);stroke-width:1.5}
+.panel{fill:var(--surface-2)}
+.st{fill:var(--surface);stroke:var(--accent);stroke-width:2}
+.hd{fill:var(--accent-soft)}
+.dia{fill:var(--surface);stroke:var(--ink-3);stroke-width:1.5}
+.term{fill:var(--surface-2);stroke:var(--accent);stroke-width:1.5}
+.endt{fill:var(--accent)}
+.fu{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}
+.dr{fill:var(--bad-soft);stroke:var(--bad);stroke-width:1.5}
+.tt{fill:var(--ink);font-weight:700;font-size:14px}
+.tw{fill:#fff;font-weight:700;font-size:14px}
+.ts{fill:var(--ink-3);font-size:12px}
+.tf{fill:var(--ink-2);font-size:12px}
+.tl{fill:var(--ink-2);font-size:11.5px;font-weight:600}
+.tla{fill:var(--accent);font-size:11.5px;font-weight:700}
+.tlw{fill:var(--warn);font-size:11.5px;font-weight:700}
+.tlr{fill:var(--bad);font-size:11.5px;font-weight:700}
+.tcap{fill:var(--accent);font-size:11px;font-weight:700;letter-spacing:.09em}
+.ln{stroke:var(--ink-3);stroke-width:1.6;fill:none}
+.la{stroke:var(--accent);stroke-width:2;fill:none}
+.lw{stroke:var(--warn);stroke-width:1.6;fill:none}
+.lr{stroke:var(--bad);stroke-width:1.6;fill:none}
+.dash{stroke-dasharray:5 4}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+td:first-child{font-weight:700;white-space:nowrap}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);margin-right:8px}
+.note{font-size:12.5px;color:var(--ink-3)}
+@media (max-width:560px){ body{padding-inline:16px} figure{padding:14px} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Acceleration Enrollment Desk · system diagrams</div>
+    <h1>Enrollment System Map</h1>
+    <p class="lede">Tiga gambar untuk menjelaskan cara kerja mockup: dari mana leads masuk, bagaimana setiap calon siswa bergerak dari Open House sampai Enrolled, dan siapa yang boleh melihat atau mengubah data.</p>
+    <nav class="toc" aria-label="Isi">
+      <a href="#f1">1 · Gambaran sistem</a>
+      <a href="#f2">2 · Alur pendaftaran</a>
+      <a href="#f3">3 · Login &amp; hak akses</a>
+      <a href="#f4">4 · Data per tahap</a>
+    </nav>
+  </header>
+
+  <!-- ================= FIGURE 1 ================= -->
+  <section id="f1">
+    <h2>1. Gambaran sistem</h2>
+    <p>Semua sumber masuk ke satu tempat, yaitu <b>lead record</b>. Setiap layar membaca dari data yang sama, dan hanya halaman Student detail yang mengubahnya.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 960 540" role="img" aria-label="Lead sources create lead records; dashboard, pipeline board and leads table read those records; student detail writes stage and follow-up changes back; the management team signs in to use the screens.">
+        <defs>
+          <marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-3)"/></marker>
+          <marker id="m1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+        </defs>
+
+        <!-- Sources -->
+        <rect class="panel" x="20" y="30" width="230" height="440" rx="12"/>
+        <text class="tcap" x="36" y="56">LEAD SOURCES</text>
+
+        <rect class="n" x="36" y="72" width="198" height="150" rx="9"/>
+        <text class="tt" x="52" y="96">Social Media</text>
+        <circle cx="58" cy="116" r="4.5" style="fill:var(--src-ig)"/><text class="tf" x="70" y="120">Instagram</text>
+        <circle cx="58" cy="137" r="4.5" style="fill:var(--src-tt)"/><text class="tf" x="70" y="141">TikTok</text>
+        <circle cx="58" cy="158" r="4.5" style="fill:var(--src-fb)"/><text class="tf" x="70" y="162">Facebook</text>
+        <circle cx="58" cy="179" r="4.5" style="fill:var(--src-th)"/><text class="tf" x="70" y="183">Threads</text>
+        <circle cx="58" cy="200" r="4.5" style="fill:var(--src-x)"/><text class="tf" x="70" y="204">X (Twitter)</text>
+
+        <rect class="n" x="36" y="238" width="198" height="66" rx="9"/>
+        <circle cx="58" cy="258" r="4.5" style="fill:var(--src-oh)"/><text class="tt" x="70" y="263">Open House</text>
+        <text class="ts" x="52" y="287">3 sessions · Jul – Sep</text>
+
+        <rect class="n" x="36" y="320" width="198" height="134" rx="9"/>
+        <text class="tt" x="52" y="344">Event &amp; Others</text>
+        <circle cx="58" cy="364" r="4.5" style="fill:var(--src-expo)"/><text class="tf" x="70" y="368">Education Expo</text>
+        <circle cx="58" cy="385" r="4.5" style="fill:var(--src-road)"/><text class="tf" x="70" y="389">School Roadshow</text>
+        <circle cx="58" cy="406" r="4.5" style="fill:var(--src-ref)"/><text class="tf" x="70" y="410">Parent Referral</text>
+        <circle cx="58" cy="427" r="4.5" style="fill:var(--src-web)"/><text class="tf" x="70" y="431">Website</text>
+
+        <line class="ln" x1="234" y1="150" x2="318" y2="150" marker-end="url(#m1)"/>
+        <line class="ln" x1="234" y1="271" x2="318" y2="271" marker-end="url(#m1)"/>
+        <line class="ln" x1="234" y1="387" x2="318" y2="387" marker-end="url(#m1)"/>
+        <text class="tl" x="277" y="262" text-anchor="middle">creates</text>
+        <text class="tl" x="277" y="141" text-anchor="middle">creates</text>
+        <text class="tl" x="277" y="378" text-anchor="middle">creates</text>
+
+        <!-- Lead record -->
+        <rect class="st" x="320" y="40" width="240" height="370" rx="10"/>
+        <path class="hd" d="M321 76V50a9 9 0 0 1 9-9h220a9 9 0 0 1 9 9v26z"/>
+        <text class="tt" x="336" y="64">Lead record</text>
+        <text class="ts" x="544" y="64" text-anchor="end">×100 sample</text>
+        <text class="tf" x="336" y="104">Student · program · entry grade</text>
+        <text class="tf" x="336" y="130">Previous school</text>
+        <text class="tf" x="336" y="156">Father · Mother · phone · email</text>
+        <text class="tf" x="336" y="182">Siblings (flag if studying here)</text>
+        <text class="tf" x="336" y="208">Source · campaign</text>
+        <text class="tf" x="336" y="234">Current stage + date per stage</text>
+        <text class="tf" x="336" y="260">Assessment score · fees paid</text>
+        <text class="tf" x="336" y="286">Status: active / dropped / enrolled</text>
+        <text class="tf" x="336" y="312">PIC · next follow-up date</text>
+        <text class="tf" x="336" y="338">Activity log</text>
+
+        <!-- Screens -->
+        <rect class="n" x="700" y="40" width="240" height="74" rx="9"/>
+        <text class="tt" x="716" y="65">Dashboard</text>
+        <text class="ts" x="716" y="86">Funnel · sources · follow-ups · PIC</text>
+        <text class="ts" x="716" y="103">Click stage/source → Leads table</text>
+
+        <rect class="n" x="700" y="134" width="240" height="74" rx="9"/>
+        <text class="tt" x="716" y="159">Pipeline board</text>
+        <text class="ts" x="716" y="180">One card per student, by stage</text>
+        <text class="ts" x="716" y="197">Click card → Student detail</text>
+
+        <rect class="n" x="700" y="228" width="240" height="74" rx="9"/>
+        <text class="tt" x="716" y="253">Leads table</text>
+        <text class="ts" x="716" y="274">Search · filter · Copy as CSV</text>
+        <text class="ts" x="716" y="291">Click row → Student detail</text>
+
+        <rect class="st" x="700" y="322" width="240" height="88" rx="9"/>
+        <text class="tt" x="716" y="347">Student detail</text>
+        <text class="ts" x="716" y="368">Timeline · parents · siblings</text>
+        <text class="ts" x="716" y="386">Move stage · Log follow-up</text>
+        <text class="ts" x="716" y="402">Mark dropped · Reactivate</text>
+
+        <line class="ln" x1="560" y1="77" x2="698" y2="77" marker-end="url(#m1)"/>
+        <text class="tl" x="629" y="69" text-anchor="middle">counts &amp; rates</text>
+        <line class="ln" x1="560" y1="171" x2="698" y2="171" marker-end="url(#m1)"/>
+        <text class="tl" x="629" y="163" text-anchor="middle">cards by stage</text>
+        <line class="ln" x1="560" y1="265" x2="698" y2="265" marker-end="url(#m1)"/>
+        <text class="tl" x="629" y="257" text-anchor="middle">rows + filters</text>
+        <line class="la" x1="700" y1="366" x2="563" y2="366" marker-end="url(#m1a)"/>
+        <text class="tla" x="629" y="358" text-anchor="middle">writes updates</text>
+
+        <!-- Team -->
+        <rect class="term" x="700" y="452" width="240" height="70" rx="9"/>
+        <text class="tt" x="716" y="477">Management team login</text>
+        <text class="ts" x="716" y="498">Head &amp; Officer: edit · Principal: view</text>
+        <line class="ln" x1="820" y1="452" x2="820" y2="413" marker-end="url(#m1)"/>
+        <text class="tl" x="830" y="437">signs in</text>
+      </svg>
+      </div>
+      <figcaption><b>Satu sumber data.</b> Sepuluh saluran di kiri semuanya menjadi <i>lead</i> dengan format yang sama. Dashboard, Pipeline board, dan Leads table hanya membaca data itu. Perubahan tahap, follow-up, atau status dropped hanya bisa dilakukan dari Student detail (panah hijau), jadi semua angka di dashboard langsung ikut berubah.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= FIGURE 2 ================= -->
+  <section id="f2">
+    <h2>2. Alur pendaftaran calon siswa</h2>
+    <p>Tujuh tahap berurutan dari Open House sampai Enrolled. Di tiga titik keputusan, lead bisa lanjut, ditindaklanjuti oleh PIC, atau berhenti.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 800 990" role="img" aria-label="Flowchart: lead registers for open house, buys the form, takes the assessment, is accepted if the score is at least 75, pays, submits the application form and is enrolled. Leads that have not bought the form or paid go to PIC follow-up; a score below 75 or no response leads to dropped.">
+        <defs>
+          <marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--accent)"/></marker>
+          <marker id="m2w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--warn)"/></marker>
+          <marker id="m2r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--bad)"/></marker>
+        </defs>
+
+        <!-- spine -->
+        <rect class="term" x="290" y="20" width="220" height="40" rx="20"/>
+        <text class="tt" x="400" y="45" text-anchor="middle">New lead (any source)</text>
+        <line class="la" x1="400" y1="60" x2="400" y2="88" marker-end="url(#m2)"/>
+
+        <rect class="st" x="280" y="90" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="113" text-anchor="middle">1 · Open House Registration</text>
+        <text class="ts" x="400" y="132" text-anchor="middle">PIC assigned</text>
+        <line class="la" x1="400" y1="146" x2="400" y2="163" marker-end="url(#m2)"/>
+
+        <polygon class="dia" points="400,165 490,205 400,245 310,205"/>
+        <text class="tt" x="400" y="210" text-anchor="middle">Buys form?</text>
+        <line class="la" x1="400" y1="245" x2="400" y2="273" marker-end="url(#m2)"/>
+        <text class="tla" x="410" y="264">yes</text>
+
+        <rect class="st" x="280" y="275" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="298" text-anchor="middle">2 · Form Purchase</text>
+        <text class="ts" x="400" y="317" text-anchor="middle">Form fee Rp 350.000</text>
+        <line class="la" x1="400" y1="331" x2="400" y2="353" marker-end="url(#m2)"/>
+
+        <rect class="st" x="280" y="355" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="378" text-anchor="middle">3 · Assessment (Test)</text>
+        <text class="ts" x="400" y="397" text-anchor="middle">Score out of 100</text>
+        <line class="la" x1="400" y1="411" x2="400" y2="428" marker-end="url(#m2)"/>
+
+        <polygon class="dia" points="400,430 490,470 400,510 310,470"/>
+        <text class="tt" x="400" y="475" text-anchor="middle">Score ≥ 75?</text>
+        <line class="la" x1="400" y1="510" x2="400" y2="538" marker-end="url(#m2)"/>
+        <text class="tla" x="410" y="529">yes</text>
+
+        <rect class="st" x="280" y="540" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="563" text-anchor="middle">4 · Accepted</text>
+        <text class="ts" x="400" y="582" text-anchor="middle">Offer sent to parents</text>
+        <line class="la" x1="400" y1="596" x2="400" y2="613" marker-end="url(#m2)"/>
+
+        <polygon class="dia" points="400,615 490,655 400,695 310,655"/>
+        <text class="tt" x="400" y="660" text-anchor="middle">Pays fee?</text>
+        <line class="la" x1="400" y1="695" x2="400" y2="723" marker-end="url(#m2)"/>
+        <text class="tla" x="410" y="714">yes</text>
+
+        <rect class="st" x="280" y="725" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="748" text-anchor="middle">5 · Payment</text>
+        <text class="ts" x="400" y="767" text-anchor="middle">Development fee Rp 27.500.000</text>
+        <line class="la" x1="400" y1="781" x2="400" y2="803" marker-end="url(#m2)"/>
+
+        <rect class="st" x="280" y="805" width="240" height="56" rx="9"/>
+        <text class="tt" x="400" y="828" text-anchor="middle">6 · New Student Application</text>
+        <text class="ts" x="400" y="847" text-anchor="middle">Full student &amp; parent data</text>
+        <line class="la" x1="400" y1="861" x2="400" y2="883" marker-end="url(#m2)"/>
+
+        <rect class="endt" x="290" y="885" width="220" height="40" rx="20"/>
+        <text class="tw" x="400" y="910" text-anchor="middle">7 · Enrolled</text>
+
+        <!-- follow-up loop (left) -->
+        <rect class="fu" x="20" y="400" width="210" height="100" rx="9"/>
+        <text class="tt" x="36" y="425">Follow-up by PIC</text>
+        <text class="tf" x="36" y="446">Call / WhatsApp parents</text>
+        <text class="tf" x="36" y="464">Next contact in 3 days</text>
+        <text class="tf" x="36" y="482">Stays at the same stage</text>
+
+        <path class="lw" d="M310 205H100V398" marker-end="url(#m2w)"/>
+        <text class="tlw" x="205" y="197" text-anchor="middle">not yet</text>
+        <path class="lw" d="M310 655H160V502" marker-end="url(#m2w)"/>
+        <text class="tlw" x="235" y="647" text-anchor="middle">not yet</text>
+
+        <!-- dropped (right) -->
+        <rect class="dr" x="590" y="436" width="190" height="80" rx="9"/>
+        <text class="tt" x="606" y="461">Dropped</text>
+        <text class="tf" x="606" y="482">Reason recorded</text>
+        <text class="tf" x="606" y="500">Can be reactivated</text>
+
+        <path class="lr" d="M490 470H588" marker-end="url(#m2r)"/>
+        <text class="tlr" x="539" y="462" text-anchor="middle">no</text>
+        <path class="lr dash" d="M60 500V965H685V518" marker-end="url(#m2r)"/>
+        <text class="tlr" x="372" y="957" text-anchor="middle">no response / declines</text>
+      </svg>
+      </div>
+      <figcaption><b>Jalur hijau adalah jalur ideal.</b> Kalau orang tua belum membeli formulir atau belum membayar, lead masuk ke <b>follow-up oleh PIC</b> (kuning) dan tetap di tahap yang sama. Tanggal follow-up berikutnya diatur 3 hari ke depan, dan yang lewat tanggal muncul sebagai <i>Overdue</i> di dashboard. Nilai tes di bawah 75, atau orang tua yang tidak merespons, membuat lead <b>Dropped</b> (merah). Lead yang dropped bisa diaktifkan kembali dari Student detail.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= FIGURE 3 ================= -->
+  <section id="f3">
+    <h2>3. Login dan hak akses</h2>
+    <p>Hanya tim manajemen yang bisa masuk. Setelah login, peran pengguna menentukan apakah ia boleh mengubah data lead atau hanya melihat.</p>
+    <figure>
+      <div class="scroll">
+      <svg viewBox="0 0 960 230" role="img" aria-label="Login flow: open the app, enter email and password; if invalid an error is shown and the user tries again; if valid the role is checked. Head of Admissions and Admissions Officer can view and update leads; the Principal can only view.">
+        <defs>
+          <marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-3)"/></marker>
+          <marker id="m3r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--bad)"/></marker>
+        </defs>
+        <rect class="term" x="20" y="62" width="150" height="56" rx="28"/>
+        <text class="tt" x="95" y="87" text-anchor="middle">Open the app</text>
+        <text class="ts" x="95" y="105" text-anchor="middle">Sign-in page</text>
+        <line class="ln" x1="170" y1="90" x2="198" y2="90" marker-end="url(#m3)"/>
+
+        <rect class="n" x="200" y="62" width="180" height="56" rx="9"/>
+        <text class="tt" x="290" y="87" text-anchor="middle">Email &amp; password</text>
+        <text class="ts" x="290" y="105" text-anchor="middle">Demo accounts listed</text>
+        <line class="ln" x1="380" y1="90" x2="406" y2="90" marker-end="url(#m3)"/>
+
+        <polygon class="dia" points="480,50 552,90 480,130 408,90"/>
+        <text class="tt" x="480" y="95" text-anchor="middle">Valid?</text>
+        <line class="ln" x1="552" y1="90" x2="588" y2="90" marker-end="url(#m3)"/>
+        <text class="tl" x="570" y="82" text-anchor="middle">yes</text>
+
+        <path class="lr" d="M480 130V190H290V121" marker-end="url(#m3r)"/>
+        <text class="tlr" x="385" y="208" text-anchor="middle">no · show error, try again</text>
+
+        <rect class="n" x="590" y="62" width="150" height="56" rx="9"/>
+        <text class="tt" x="665" y="87" text-anchor="middle">Check role</text>
+        <text class="ts" x="665" y="105" text-anchor="middle">From the account</text>
+
+        <path class="ln" d="M740 90H760V46H786" marker-end="url(#m3)"/>
+        <path class="ln" d="M760 90V146H786" />
+        <line class="ln" x1="760" y1="146" x2="786" y2="146" marker-end="url(#m3)"/>
+
+        <rect class="st" x="788" y="18" width="160" height="58" rx="9"/>
+        <text class="tt" x="802" y="42">Head · Officer</text>
+        <text class="ts" x="802" y="62">View + update leads</text>
+
+        <rect class="n" x="788" y="118" width="160" height="58" rx="9"/>
+        <text class="tt" x="802" y="142">Principal</text>
+        <text class="ts" x="802" y="162">View only</text>
+      </svg>
+      </div>
+      <figcaption><b>Dua tingkat akses.</b> Head of Admissions dan Admissions Officer bisa memindahkan tahap, mencatat follow-up, dan menandai dropped. Principal membuka dashboard dan detail yang sama, tetapi tidak ada tombol untuk mengubah data. Semua peran masuk ke Dashboard setelah login.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ================= TABLE ================= -->
+  <section id="f4">
+    <h2>4. Yang dicatat di setiap tahap</h2>
+    <figure>
+      <div class="scroll">
+      <table>
+        <thead><tr><th>Tahap</th><th>Data yang tercatat di lead</th><th>Kalau tidak lanjut</th></tr></thead>
+        <tbody>
+          <tr><td><span class="dot"></span>1 · Open House Registration</td><td>Tanggal daftar, sumber &amp; campaign, PIC, data siswa dan orang tua awal</td><td>Follow-up PIC, lalu dropped jika tidak ada respons</td></tr>
+          <tr><td><span class="dot"></span>2 · Form Purchase</td><td>Tanggal beli formulir, biaya Rp 350.000</td><td>Follow-up PIC</td></tr>
+          <tr><td><span class="dot"></span>3 · Assessment (Test)</td><td>Tanggal tes, nilai /100</td><td>Nilai &lt; 75 → dropped</td></tr>
+          <tr><td><span class="dot"></span>4 · Accepted</td><td>Tanggal diterima</td><td>Belum bayar → follow-up PIC</td></tr>
+          <tr><td><span class="dot"></span>5 · Payment</td><td>Tanggal bayar, uang pangkal Rp 27.500.000</td><td>Follow-up PIC</td></tr>
+          <tr><td><span class="dot"></span>6 · New Student Application</td><td>Data lengkap siswa, orang tua, saudara kandung, sekolah asal</td><td>Follow-up PIC</td></tr>
+          <tr><td><span class="dot"></span>7 · Enrolled</td><td>Tanggal resmi terdaftar, masuk hitungan kursi</td><td>Selesai</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="note">Mock-up only. Biaya dan batas nilai adalah contoh dan bisa disesuaikan dengan kebijakan sekolah.</p>
+    </figure>
+  </section>
+</div>
+</body>
+</html>
