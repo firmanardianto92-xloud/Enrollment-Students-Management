@@ -32,6 +32,8 @@ Open `index.html` in a browser. There is no build step and no server.
   - Lead source and activity log.
   - Buttons to advance the stage, log a follow-up, or mark the lead as dropped.
 
+Theme: soft green and white. Each lead source has its own color (Instagram pink, TikTok cyan, Facebook blue, Threads violet, X black, Open House green, Education Expo gold, School Roadshow orange, Parent Referral brown, Website slate).
+
 Tracked stages: Open House Registration → Form Purchase → Assessment (Test) → Accepted → Payment → New Student Application Form → Enrolled.
 
 ## Sample data
