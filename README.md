@@ -42,7 +42,9 @@ There are 100 generated leads covering every stage, plus some dropped leads. The
 
 ## System diagrams
 
-Open `diagram.html` in a browser for the interactive version. High-resolution PNGs (3120 px wide) are in `docs/diagrams/`:
+Open `diagram.html` in a browser for the interactive version. All diagrams in one high-resolution image: [enrollment-system-diagram-HD.png](docs/diagrams/enrollment-system-diagram-HD.png) (3300 × 10350 px).
+
+Each diagram as a separate PNG (3120 px wide) in `docs/diagrams/`:
 
 - [1-gambaran-sistem.png](docs/diagrams/1-gambaran-sistem.png): system overview (sources → lead record → screens)
 - [2-alur-pendaftaran.png](docs/diagrams/2-alur-pendaftaran.png): enrollment flowchart with follow-up and dropped paths
