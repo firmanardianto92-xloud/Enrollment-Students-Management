@@ -60,7 +60,7 @@ Each diagram as a separate PNG (3120 px wide) in `docs/diagrams/`:
 
 ## Family ID Blueprint
 
-An architecture proposal for growing the Enrollment Desk into a school-wide family lifecycle system: the Attract → Enroll → Grow → Continue → Advocate lifecycle, a layered architecture, the Family ID concept, the experience for each role, Home Portal content, CX principles, a phased roadmap and the Phase 1 investment for the foundation: price per student and total per year, with a 1,000-student example, plus the technology and tools used and their cost.
+An architecture proposal for growing the Enrollment Desk into a school-wide family lifecycle system: the Attract → Enroll → Grow → Continue → Advocate lifecycle, a layered architecture, the Family ID concept, the experience for each role, Home Portal content, CX principles and a phased roadmap.
 
 - [Family-ID-Blueprint.html](docs/blueprint/Family-ID-Blueprint.html): open in a browser
 - [Family-ID-Blueprint.pdf](docs/blueprint/Family-ID-Blueprint.pdf): A4 PDF
