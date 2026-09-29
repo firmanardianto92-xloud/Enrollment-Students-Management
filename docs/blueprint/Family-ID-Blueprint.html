@@ -131,6 +131,8 @@ table.cost td b{color:var(--ink)}
 table.cost .r{text-align:right;white-space:nowrap;font-weight:700;color:var(--ink)}
 table.cost tr.hl td{background:var(--accent-soft)}
 table.cost tfoot td{border-bottom:0;background:var(--surface-2);font-size:15px;color:var(--ink)}
+table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width:170px}
+.nw{white-space:nowrap}
 .opt{font-size:11px;font-weight:700;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:1px 7px;margin-left:4px}
 .assume{background:var(--surface);border:1px dashed var(--line-2);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-2);display:grid;gap:8px}
 .assume b{color:var(--ink)}
@@ -292,50 +294,53 @@ table.cost tfoot td{border-bottom:0;background:var(--surface-2);font-size:15px;c
   <!-- COST PHASE 1 -->
   <section id="cost1">
     <div class="eyebrow">Phase 1 · months 0–3</div>
-    <h2>Phase 1 cost estimate: from environment setup to training</h2>
-    <p class="intro">An indicative budget range for Foundation &amp; front door, based on typical Indonesian software agency rates. Use it to frame the conversation, then confirm it with vendor quotes once scope is agreed.</p>
+    <h2>Phase 1 cost estimate, leanest option: from environment setup to training</h2>
+    <p class="intro">The lowest-cost way to deliver Foundation &amp; front door: a small freelance team, open-source software and free or low-cost cloud tiers. Amounts are in IDR, where 1 mio = 1,000,000.</p>
     <div class="costsum">
-      <div class="big"><span class="lbl">One-time investment</span><b>Rp 400–650 million</b><span>Setup, build, launch and training over about 3 months</span></div>
-      <div><span class="lbl">Monthly running cost</span><b>Rp 15–30 million</b><span>Hosting, WhatsApp, maintenance and support after launch</span></div>
-      <div><span class="lbl">Team</span><b>5–6 people</b><span>PM, UI/UX designer, 2 developers, QA, part-time DevOps</span></div>
+      <div class="big"><span class="lbl">One-time investment</span><b>IDR 99 mio</b><span>Setup, build, launch and training over about 3 months</span></div>
+      <div><span class="lbl">Monthly running cost</span><b>IDR 4 mio</b><span>Cloud, WhatsApp and a small maintenance retainer after launch</span></div>
+      <div><span class="lbl">Team</span><b>3 people</b><span>1 full-stack developer, 1 part-time UI/UX designer, 1 part-time PM who also runs QA</span></div>
     </div>
     <div class="tblwrap">
       <table class="cost">
-        <thead><tr><th>#</th><th>Item</th><th>What's included</th><th class="r">Estimate (Rp)</th></tr></thead>
+        <thead><tr><th>#</th><th>Item</th><th>Tools &amp; technology</th><th>What's included</th><th class="r">Cost</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td><b>Discovery &amp; UX design</b></td><td>Workshops with admissions and finance, parent interviews, designs for Home Portal, Open House form and status page</td><td class="r">45–70 M</td></tr>
-          <tr><td>2</td><td><b>Environment setup</b></td><td>Cloud staging and production, domain and SSL, CI/CD pipeline, backups, security hardening</td><td class="r">15–25 M</td></tr>
-          <tr><td>3</td><td><b>Development</b></td><td>Family ID and single login, public Home Portal with CMS, Open House form to lead, status check, Enrollment Desk connection</td><td class="r">180–280 M</td></tr>
-          <tr><td>4</td><td><b>Integrations</b></td><td>WhatsApp Business API, transactional email, payment gateway for the form fee</td><td class="r">15–30 M</td></tr>
-          <tr><td>5</td><td><b>Data migration</b></td><td>Clean up and import existing leads and family data</td><td class="r">15–30 M</td></tr>
-          <tr><td>6</td><td><b>Testing &amp; UAT</b></td><td>Functional testing, user acceptance with staff, basic security test</td><td class="r">25–40 M</td></tr>
-          <tr class="hl"><td>7</td><td><b>Training &amp; go-live</b></td><td>Hands-on training for admissions and staff, train-the-trainer, user guide and short videos, go-live support for 2 weeks</td><td class="r">15–25 M</td></tr>
-          <tr><td>8</td><td><b>Portal content</b> <span class="opt">optional</span></td><td>Facility photos and copywriting for the Home Portal</td><td class="r">10–30 M</td></tr>
-          <tr><td>9</td><td><b>Project management</b></td><td>Planning, weekly reporting, coordination with the school</td><td class="r">45–60 M</td></tr>
-          <tr><td>10</td><td><b>Contingency (10%)</b></td><td>Buffer for scope clarifications</td><td class="r">35–60 M</td></tr>
+          <tr><td>1</td><td><b>Discovery &amp; UX design</b></td><td class="tools">Figma (free plan), Google Meet</td><td>Workshops with admissions, designs for Home Portal, Open House form and status page</td><td class="r">IDR 10 mio</td></tr>
+          <tr><td>2</td><td><b>Environment setup</b></td><td class="tools">GitHub + GitHub Actions, Cloudflare Pages &amp; SSL, Supabase, <span class="nw">.sch.id</span> domain</td><td>Staging and production, automatic deploys, SSL, daily database backups</td><td class="r">IDR 3 mio</td></tr>
+          <tr><td>3</td><td><b>Development</b></td><td class="tools">WordPress (Home Portal), Next.js + Supabase Auth &amp; Postgres (Family ID, forms, Enrollment Desk)</td><td>Family ID and single login, Home Portal, Open House form to lead, status check, Enrollment Desk connection</td><td class="r">IDR 50 mio</td></tr>
+          <tr><td>4</td><td><b>Integrations</b></td><td class="tools">WhatsApp Cloud API (direct from Meta), Resend email, Midtrans or Xendit</td><td>WhatsApp and email notifications, online payment for the form fee</td><td class="r">IDR 5 mio</td></tr>
+          <tr><td>5</td><td><b>Data migration</b></td><td class="tools">Google Sheets / CSV, import script</td><td>Clean up and import existing leads and family data</td><td class="r">IDR 3 mio</td></tr>
+          <tr><td>6</td><td><b>Testing &amp; UAT</b></td><td class="tools">Playwright, Google Sheets test checklist</td><td>Automated checks of key flows, user acceptance with staff</td><td class="r">IDR 5 mio</td></tr>
+          <tr class="hl"><td>7</td><td><b>Training &amp; go-live</b></td><td class="tools">Google Meet, Loom (free plan), Google Docs</td><td>2 training sessions for admissions and staff, recorded videos, user guide, 2 weeks of go-live support</td><td class="r">IDR 5 mio</td></tr>
+          <tr><td>8</td><td><b>Portal content</b></td><td class="tools">Staff smartphones, Canva (free plan)</td><td>Facility photos and texts prepared by the school</td><td class="r">IDR 0</td></tr>
+          <tr><td>9</td><td><b>Project management</b></td><td class="tools">Trello or Notion (free plan), WhatsApp group</td><td>Planning, weekly updates, coordination with the school</td><td class="r">IDR 9 mio</td></tr>
+          <tr><td>10</td><td><b>Contingency (10%)</b></td><td class="tools">–</td><td>Buffer for scope clarifications</td><td class="r">IDR 9 mio</td></tr>
         </tbody>
-        <tfoot><tr><td></td><td colspan="2"><b>Total one-time (rounded)</b></td><td class="r"><b>400–650 M</b></td></tr></tfoot>
+        <tfoot><tr><td></td><td colspan="3"><b>Total one-time</b></td><td class="r"><b>IDR 99 mio</b></td></tr></tfoot>
       </table>
     </div>
     <div class="tblwrap">
       <table class="cost">
-        <thead><tr><th>Monthly after launch</th><th>Notes</th><th class="r">Per month (Rp)</th></tr></thead>
+        <thead><tr><th>Monthly after launch</th><th>Tools &amp; technology</th><th>Notes</th><th class="r">Per month</th></tr></thead>
         <tbody>
-          <tr><td><b>Cloud hosting</b></td><td>Staging and production servers, managed database, backups</td><td class="r">3–6 M</td></tr>
-          <tr><td><b>Domain, SSL &amp; email</b></td><td>Transactional email for confirmations and status updates</td><td class="r">0.5–1 M</td></tr>
-          <tr><td><b>WhatsApp Business API</b></td><td>Charged per message; depends on the number of families</td><td class="r">1–3 M</td></tr>
-          <tr><td><b>Maintenance &amp; support</b></td><td>Bug fixes, security updates, help desk during school hours</td><td class="r">10–20 M</td></tr>
-          <tr><td><b>Payment gateway</b></td><td>Per transaction only, no monthly fee</td><td class="r">per use</td></tr>
+          <tr><td><b>Web app hosting</b></td><td class="tools">Cloudflare Pages</td><td>Free plan, commercial use allowed</td><td class="r">IDR 0</td></tr>
+          <tr><td><b>Database, login &amp; backups</b></td><td class="tools">Supabase Pro (USD 25)</td><td>Daily backups; the free plan pauses inactive projects, so Pro is advised</td><td class="r">IDR 0.4 mio</td></tr>
+          <tr><td><b>Home Portal hosting</b></td><td class="tools">Local WordPress shared hosting</td><td>Paid yearly</td><td class="r">IDR 0.1 mio</td></tr>
+          <tr><td><b>Email</b></td><td class="tools">Resend (free plan)</td><td>Enough for confirmations and status updates at this scale</td><td class="r">IDR 0</td></tr>
+          <tr><td><b>WhatsApp messages</b></td><td class="tools">WhatsApp Cloud API</td><td>Charged per template message; replies to parent messages are cheaper</td><td class="r">IDR 0.5 mio</td></tr>
+          <tr><td><b>Maintenance</b></td><td class="tools">Freelance retainer</td><td>Bug fixes and security updates</td><td class="r">IDR 3 mio</td></tr>
+          <tr><td><b>Payment gateway</b></td><td class="tools">Midtrans or Xendit</td><td>No monthly fee; about IDR 4,000–4,500 per virtual-account payment, can be passed on to parents</td><td class="r">per use</td></tr>
         </tbody>
-        <tfoot><tr><td colspan="2"><b>Total monthly (rounded)</b></td><td class="r"><b>15–30 M</b></td></tr></tfoot>
+        <tfoot><tr><td colspan="3"><b>Total monthly (rounded)</b></td><td class="r"><b>IDR 4 mio</b></td></tr></tfoot>
       </table>
     </div>
     <div class="assume">
       <b>Assumptions behind these numbers</b>
       <ul>
-        <li>One foundation with its school units on one platform, up to about 1,000 families in the first year.</li>
-        <li>Custom build on cloud hosting. Using an off-the-shelf CMS for the Home Portal can lower item 3 by roughly 20–30%.</li>
+        <li>Freelance rates: full-stack developer IDR 15 mio per month for 3 months, part-time designer and part-time PM.</li>
+        <li>About 1,000 families in the first year. USD prices converted at IDR 16,000 per USD. Free-plan limits and vendor prices can change.</li>
         <li>Excludes VAT (PPN), hardware, internet at school, and the time of the school's own staff.</li>
+        <li>This is the leanest option. A software agency with a full team would typically quote around IDR 400–650 mio for the same scope, with more capacity and support.</li>
         <li>Phases 2–4 are budgeted separately once Phase 1 is live.</li>
       </ul>
     </div>
