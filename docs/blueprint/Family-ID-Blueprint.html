@@ -131,6 +131,7 @@ table.cost td b{color:var(--ink)}
 table.cost .r{text-align:right;white-space:nowrap;font-weight:700;color:var(--ink)}
 table.cost tr.hl td{background:var(--accent-soft)}
 table.cost tfoot td{border-bottom:0;background:var(--surface-2);font-size:15px;color:var(--ink)}
+h3.tt{font-size:17px;font-weight:800;margin-top:8px}
 table.cost .sub{font-size:12px;font-weight:500;color:var(--ink-3)}
 .valuebox{background:var(--accent-soft);border-radius:12px;padding:16px 18px;display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
 .valuebox b,.valuebox strong{color:var(--ink)}
@@ -339,7 +340,29 @@ table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width
       <div><b>Included in the subscription</b><ul><li>One Family ID account for every family, with single login</li><li>Home Portal, Open House form, application status page and Enrollment Desk</li><li>WhatsApp and email notifications (fair use)</li><li>Hosting, daily backups, security updates and new Phase 1 features</li><li>Support during school hours</li></ul></div>
       <div><b>Not included</b><ul><li>Payment gateway fee per transaction, about IDR 4,000–4,500 per virtual-account payment (can be charged to parents)</li><li>VAT (PPN)</li><li>Features from Phases 2–4, priced when those phases start</li><li>Hardware and internet at school</li></ul></div>
     </div>
-    <p class="note">Built on WordPress, Next.js, Supabase, Cloudflare and the WhatsApp Cloud API. Data is hosted in the cloud with daily backups.</p>
+    <h3 class="tt">Technology &amp; tools used in Phase 1</h3>
+    <p class="intro">Proven, widely used tools. Most are open source or on free plans, which keeps the subscription low. Every paid tool below is already included in the subscription unless marked otherwise.</p>
+    <div class="tblwrap">
+      <table class="cost">
+        <thead><tr><th>Tool</th><th>Used for</th><th>Type</th><th class="r">Price</th><th>Paid by</th></tr></thead>
+        <tbody>
+          <tr><td><b>WordPress</b></td><td>Public Home Portal and content editing by school staff</td><td>Open source</td><td class="r">Free</td><td>–</td></tr>
+          <tr><td><b>Next.js</b></td><td>Family ID app: login, Open House form, status check, Enrollment Desk</td><td>Open source</td><td class="r">Free</td><td>–</td></tr>
+          <tr><td><b>Supabase</b></td><td>Database, family login (Family ID), file storage, daily backups</td><td>Cloud service (Pro plan)</td><td class="r">USD 25 / month<br><span class="sub">≈ IDR 0.4 mio</span></td><td>Subscription</td></tr>
+          <tr><td><b>Cloudflare Pages</b></td><td>Hosting the app, SSL certificate, fast loading across Indonesia</td><td>Cloud service (free plan)</td><td class="r">Free</td><td>–</td></tr>
+          <tr><td><b>WordPress hosting</b></td><td>Hosting the Home Portal with a local provider</td><td>Shared hosting</td><td class="r">≈ IDR 0.1 mio / month</td><td>Subscription</td></tr>
+          <tr><td><b><span class="nw">.sch.id</span> domain</b></td><td>The school's official web address</td><td>Domain</td><td class="r">≈ IDR 0.1 mio / year</td><td>Subscription</td></tr>
+          <tr><td><b>WhatsApp Cloud API</b></td><td>Open House confirmations, reminders and status updates to parents</td><td>Meta, per message</td><td class="r">≈ IDR 0.5 mio / month<br><span class="sub">at 1,000 families</span></td><td>Subscription (fair use)</td></tr>
+          <tr><td><b>Resend</b></td><td>Email confirmations and status updates</td><td>Cloud service (free plan)</td><td class="r">Free<br><span class="sub">up to 3,000 emails / month</span></td><td>–</td></tr>
+          <tr><td><b>Midtrans or Xendit</b></td><td>Online payment of the form fee by virtual account</td><td>Payment gateway</td><td class="r">≈ IDR 4,000–4,500<br><span class="sub">per transaction</span></td><td>Parents, per payment</td></tr>
+          <tr><td><b>GitHub</b></td><td>Source code, version history and automatic deployment</td><td>Cloud service (free plan)</td><td class="r">Free</td><td>–</td></tr>
+          <tr><td><b>Figma</b></td><td>Screen design and prototypes reviewed with the school</td><td>Design tool (free plan)</td><td class="r">Free</td><td>–</td></tr>
+          <tr><td><b>Google Meet, Loom, Google Docs</b></td><td>Staff training sessions, recorded video guides and the user manual</td><td>Free plans</td><td class="r">Free</td><td>–</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="3"><b>Tools &amp; infrastructure, monthly</b></td><td class="r">≈ IDR 1 mio</td><td>Included in subscription</td></tr></tfoot>
+      </table>
+    </div>
+    <p class="note">The school owns its data and its <span class="nw">.sch.id</span> domain. Because the core tools are open source, the system is not locked to one vendor. Tool prices follow each vendor's published pricing and can change; USD converted at IDR 16,000.</p>
     <div class="assume">
       <b>Assumptions behind these numbers</b>
       <ul>
