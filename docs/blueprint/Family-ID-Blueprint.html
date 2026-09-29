@@ -131,9 +131,16 @@ table.cost td b{color:var(--ink)}
 table.cost .r{text-align:right;white-space:nowrap;font-weight:700;color:var(--ink)}
 table.cost tr.hl td{background:var(--accent-soft)}
 table.cost tfoot td{border-bottom:0;background:var(--surface-2);font-size:15px;color:var(--ink)}
+table.cost .sub{font-size:12px;font-weight:500;color:var(--ink-3)}
+.valuebox{background:var(--accent-soft);border-radius:12px;padding:16px 18px;display:grid;gap:6px;font-size:14px;color:var(--ink-2)}
+.valuebox b,.valuebox strong{color:var(--ink)}
+.incl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.incl > div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:8px;align-content:start;font-size:13.5px;color:var(--ink-2)}
+.incl b{color:var(--ink);font-size:14.5px}
+@media (max-width:620px){.incl{grid-template-columns:minmax(0,1fr)}}
 table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width:170px}
 .nw{white-space:nowrap}
-.opt{font-size:11px;font-weight:700;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:1px 7px;margin-left:4px}
+.opt{white-space:nowrap;display:inline-block;font-size:11px;font-weight:700;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:1px 7px;margin-left:4px}
 .assume{background:var(--surface);border:1px dashed var(--line-2);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-2);display:grid;gap:8px}
 .assume b{color:var(--ink)}
 @media (max-width:760px){.costsum{grid-template-columns:minmax(0,1fr)}}
@@ -284,7 +291,7 @@ table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width
     <h2>7. Implementation phases</h2>
     <p class="intro">Built in stages so staff and parents are not overwhelmed. Each phase has a mock-up that can be tested before development.</p>
     <div class="road">
-      <div class="ph now"><span class="when">Phase 1 · months 0–3</span><h3>Foundation &amp; front door</h3><ul><li>Family ID and single login</li><li>Public Home Portal</li><li>Open House form creates leads directly</li><li>Enrollment Desk connected <span class="have">already built</span></li></ul><div class="mock">Mock-up: Home Portal, Open House form, status check page</div><a class="costlink" href="#cost1">View cost estimate →</a></div>
+      <div class="ph now"><span class="when">Phase 1 · months 0–3</span><h3>Foundation &amp; front door</h3><ul><li>Family ID and single login</li><li>Public Home Portal</li><li>Open House form creates leads directly</li><li>Enrollment Desk connected <span class="have">already built</span></li></ul><div class="mock">Mock-up: Home Portal, Open House form, status check page</div><a class="costlink" href="#cost1">View cost per student →</a></div>
       <div class="ph"><span class="when">Phase 2 · months 3–6</span><h3>Connected families</h3><ul><li>Family App: bills, announcements, attendance, report cards</li><li>Finance back-office</li><li>Bank virtual account and WhatsApp integration</li></ul><div class="mock">Mock-up: parent home screen with several children</div></div>
       <div class="ph"><span class="when">Phase 3 · months 6–12</span><h3>Learning &amp; activities</h3><ul><li>Teacher Workspace</li><li>Learning and discussion spaces</li><li>Student Life and facility booking</li></ul><div class="mock">Mock-up: teacher space and student space</div></div>
       <div class="ph"><span class="when">Phase 4 · months 12+</span><h3>Sustained growth</h3><ul><li>Journey intelligence and next-best-action</li><li>All three growth loops automated</li><li>Foundation Dashboard and alumni</li></ul><div class="mock">Mock-up: foundation dashboard</div></div>
@@ -294,54 +301,51 @@ table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width
   <!-- COST PHASE 1 -->
   <section id="cost1">
     <div class="eyebrow">Phase 1 · months 0–3</div>
-    <h2>Phase 1 cost estimate, leanest option: from environment setup to training</h2>
-    <p class="intro">The lowest-cost way to deliver Foundation &amp; front door: a small freelance team, open-source software and free or low-cost cloud tiers. Amounts are in IDR, where 1 mio = 1,000,000.</p>
+    <h2>Phase 1 investment for the foundation</h2>
+    <p class="intro">What the foundation pays for Foundation &amp; front door, shown per student and in total. There is one setup fee that covers everything from environment setup to staff training, then a subscription per active student. Example: a foundation with 1,000 students. Amounts are in IDR, where 1 mio = 1,000,000.</p>
     <div class="costsum">
-      <div class="big"><span class="lbl">One-time investment</span><b>IDR 99 mio</b><span>Setup, build, launch and training over about 3 months</span></div>
-      <div><span class="lbl">Monthly running cost</span><b>IDR 4 mio</b><span>Cloud, WhatsApp and a small maintenance retainer after launch</span></div>
-      <div><span class="lbl">Team</span><b>3 people</b><span>1 full-stack developer, 1 part-time UI/UX designer, 1 part-time PM who also runs QA</span></div>
+      <div class="big"><span class="lbl">Per student</span><b>IDR 10,000 / month</b><span>IDR 120,000 per student per year, billed yearly</span></div>
+      <div><span class="lbl">Foundation, year 1</span><b>IDR 155 mio</b><span>Setup and training IDR 35 mio + subscription IDR 120 mio (1,000 students)</span></div>
+      <div><span class="lbl">Foundation, year 2 onward</span><b>IDR 120 mio / year</b><span>Subscription only; no new setup fee</span></div>
     </div>
     <div class="tblwrap">
       <table class="cost">
-        <thead><tr><th>#</th><th>Item</th><th>Tools &amp; technology</th><th>What's included</th><th class="r">Cost</th></tr></thead>
+        <thead><tr><th>Example: 1,000 students</th><th>How it is calculated</th><th class="r">Amount</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td><b>Discovery &amp; UX design</b></td><td class="tools">Figma (free plan), Google Meet</td><td>Workshops with admissions, designs for Home Portal, Open House form and status page</td><td class="r">IDR 10 mio</td></tr>
-          <tr><td>2</td><td><b>Environment setup</b></td><td class="tools">GitHub + GitHub Actions, Cloudflare Pages &amp; SSL, Supabase, <span class="nw">.sch.id</span> domain</td><td>Staging and production, automatic deploys, SSL, daily database backups</td><td class="r">IDR 3 mio</td></tr>
-          <tr><td>3</td><td><b>Development</b></td><td class="tools">WordPress (Home Portal), Next.js + Supabase Auth &amp; Postgres (Family ID, forms, Enrollment Desk)</td><td>Family ID and single login, Home Portal, Open House form to lead, status check, Enrollment Desk connection</td><td class="r">IDR 50 mio</td></tr>
-          <tr><td>4</td><td><b>Integrations</b></td><td class="tools">WhatsApp Cloud API (direct from Meta), Resend email, Midtrans or Xendit</td><td>WhatsApp and email notifications, online payment for the form fee</td><td class="r">IDR 5 mio</td></tr>
-          <tr><td>5</td><td><b>Data migration</b></td><td class="tools">Google Sheets / CSV, import script</td><td>Clean up and import existing leads and family data</td><td class="r">IDR 3 mio</td></tr>
-          <tr><td>6</td><td><b>Testing &amp; UAT</b></td><td class="tools">Playwright, Google Sheets test checklist</td><td>Automated checks of key flows, user acceptance with staff</td><td class="r">IDR 5 mio</td></tr>
-          <tr class="hl"><td>7</td><td><b>Training &amp; go-live</b></td><td class="tools">Google Meet, Loom (free plan), Google Docs</td><td>2 training sessions for admissions and staff, recorded videos, user guide, 2 weeks of go-live support</td><td class="r">IDR 5 mio</td></tr>
-          <tr><td>8</td><td><b>Portal content</b></td><td class="tools">Staff smartphones, Canva (free plan)</td><td>Facility photos and texts prepared by the school</td><td class="r">IDR 0</td></tr>
-          <tr><td>9</td><td><b>Project management</b></td><td class="tools">Trello or Notion (free plan), WhatsApp group</td><td>Planning, weekly updates, coordination with the school</td><td class="r">IDR 9 mio</td></tr>
-          <tr><td>10</td><td><b>Contingency (10%)</b></td><td class="tools">–</td><td>Buffer for scope clarifications</td><td class="r">IDR 9 mio</td></tr>
+          <tr><td><b>Setup &amp; training</b> <span class="opt">one-time</span></td><td>Environment setup, school-branded Home Portal, data migration, 2 staff training sessions with videos and a user guide, 2 weeks of go-live support</td><td class="r">IDR 35 mio</td></tr>
+          <tr><td><b>Subscription</b></td><td>1,000 students × IDR 10,000 × 12 months</td><td class="r">IDR 120 mio</td></tr>
+          <tr class="hl"><td><b>Total year 1</b></td><td>Setup + subscription</td><td class="r">IDR 155 mio</td></tr>
+          <tr><td><b>Per student, year 1</b></td><td>IDR 155 mio ÷ 1,000 students</td><td class="r">IDR 155,000 / year<br><span class="sub">≈ IDR 12,900 / month</span></td></tr>
+          <tr><td><b>Per student, year 2 onward</b></td><td>Subscription only</td><td class="r">IDR 120,000 / year<br><span class="sub">IDR 10,000 / month</span></td></tr>
+          <tr><td><b>Share of monthly tuition</b></td><td>IDR 10,000 against an example SPP of IDR 1,500,000 per month</td><td class="r">0.7%</td></tr>
         </tbody>
-        <tfoot><tr><td></td><td colspan="3"><b>Total one-time</b></td><td class="r"><b>IDR 99 mio</b></td></tr></tfoot>
       </table>
     </div>
     <div class="tblwrap">
       <table class="cost">
-        <thead><tr><th>Monthly after launch</th><th>Tools &amp; technology</th><th>Notes</th><th class="r">Per month</th></tr></thead>
+        <thead><tr><th>Foundation size</th><th class="r">Price per student / month</th><th class="r">Subscription / year</th><th class="r">Setup (one-time)</th><th class="r">Total year 1</th><th class="r">Year 2 onward</th></tr></thead>
         <tbody>
-          <tr><td><b>Web app hosting</b></td><td class="tools">Cloudflare Pages</td><td>Free plan, commercial use allowed</td><td class="r">IDR 0</td></tr>
-          <tr><td><b>Database, login &amp; backups</b></td><td class="tools">Supabase Pro (USD 25)</td><td>Daily backups; the free plan pauses inactive projects, so Pro is advised</td><td class="r">IDR 0.4 mio</td></tr>
-          <tr><td><b>Home Portal hosting</b></td><td class="tools">Local WordPress shared hosting</td><td>Paid yearly</td><td class="r">IDR 0.1 mio</td></tr>
-          <tr><td><b>Email</b></td><td class="tools">Resend (free plan)</td><td>Enough for confirmations and status updates at this scale</td><td class="r">IDR 0</td></tr>
-          <tr><td><b>WhatsApp messages</b></td><td class="tools">WhatsApp Cloud API</td><td>Charged per template message; replies to parent messages are cheaper</td><td class="r">IDR 0.5 mio</td></tr>
-          <tr><td><b>Maintenance</b></td><td class="tools">Freelance retainer</td><td>Bug fixes and security updates</td><td class="r">IDR 3 mio</td></tr>
-          <tr><td><b>Payment gateway</b></td><td class="tools">Midtrans or Xendit</td><td>No monthly fee; about IDR 4,000–4,500 per virtual-account payment, can be passed on to parents</td><td class="r">per use</td></tr>
+          <tr><td><b>Up to 500 students</b><br><span class="sub">example: 500</span></td><td class="r">IDR 12,000</td><td class="r">IDR 72 mio</td><td class="r">IDR 35 mio</td><td class="r">IDR 107 mio</td><td class="r">IDR 72 mio</td></tr>
+          <tr class="hl"><td><b>501–1,500 students</b><br><span class="sub">example: 1,000</span></td><td class="r">IDR 10,000</td><td class="r">IDR 120 mio</td><td class="r">IDR 35 mio</td><td class="r">IDR 155 mio</td><td class="r">IDR 120 mio</td></tr>
+          <tr><td><b>More than 1,500 students</b><br><span class="sub">example: 2,000</span></td><td class="r">IDR 8,000</td><td class="r">IDR 192 mio</td><td class="r">IDR 35 mio</td><td class="r">IDR 227 mio</td><td class="r">IDR 192 mio</td></tr>
         </tbody>
-        <tfoot><tr><td colspan="3"><b>Total monthly (rounded)</b></td><td class="r"><b>IDR 4 mio</b></td></tr></tfoot>
       </table>
     </div>
+    <div class="valuebox">
+      <b>How quickly it pays back</b>
+      <p>One new student brings in about IDR 45.5 mio in the first year (development fee IDR 27.5 mio + 12 months of SPP at IDR 1.5 mio). <strong>About 4 extra enrollments a year</strong> from better Open House follow-up, sibling enrollment and referrals cover the full year-1 cost for 1,000 students.</p>
+    </div>
+    <div class="incl">
+      <div><b>Included in the subscription</b><ul><li>One Family ID account for every family, with single login</li><li>Home Portal, Open House form, application status page and Enrollment Desk</li><li>WhatsApp and email notifications (fair use)</li><li>Hosting, daily backups, security updates and new Phase 1 features</li><li>Support during school hours</li></ul></div>
+      <div><b>Not included</b><ul><li>Payment gateway fee per transaction, about IDR 4,000–4,500 per virtual-account payment (can be charged to parents)</li><li>VAT (PPN)</li><li>Features from Phases 2–4, priced when those phases start</li><li>Hardware and internet at school</li></ul></div>
+    </div>
+    <p class="note">Built on WordPress, Next.js, Supabase, Cloudflare and the WhatsApp Cloud API. Data is hosted in the cloud with daily backups.</p>
     <div class="assume">
       <b>Assumptions behind these numbers</b>
       <ul>
-        <li>Freelance rates: full-stack developer IDR 15 mio per month for 3 months, part-time designer and part-time PM.</li>
-        <li>About 1,000 families in the first year. USD prices converted at IDR 16,000 per USD. Free-plan limits and vendor prices can change.</li>
-        <li>Excludes VAT (PPN), hardware, internet at school, and the time of the school's own staff.</li>
-        <li>This is the leanest option. A software agency with a full team would typically quote around IDR 400–650 mio for the same scope, with more capacity and support.</li>
-        <li>Phases 2–4 are budgeted separately once Phase 1 is live.</li>
+        <li>Prices are a proposal for discussion, billed yearly per active student. SPP and development fee are example figures; replace them with the school's real fees.</li>
+        <li>The setup fee is the same for every size because the work is the same: one platform for the whole foundation.</li>
+        <li>Phases 2–4 add features and are priced when each phase starts.</li>
       </ul>
     </div>
     <a class="costlink" href="#road">↑ Back to implementation phases</a>
