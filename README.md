@@ -25,7 +25,7 @@ Open `index.html` in a browser. There is no build step and no server.
   - Follow-ups due today.
   - Team workload.
 - **Pipeline board** showing each student card by current stage.
-- **Leads table** with search, filters, sorting and a "Copy as CSV" button.
+- **Leads table** with search (including FAM / LD / STUID), filters, sorting and a "Copy as CSV" button.
 - **Student detail**:
   - Stage timeline.
   - Student data, parents, siblings and previous school.
@@ -33,6 +33,13 @@ Open `index.html` in a browser. There is no build step and no server.
   - Buttons to advance the stage, log a follow-up, or mark the lead as dropped.
 
 Theme: soft green and white. Each lead source has its own color (Instagram pink, TikTok cyan, Facebook blue, Threads violet, X black, Open House green, Education Expo gold, School Roadshow orange, Parent Referral brown, Website slate).
+
+ID model:
+- **Family ID** (`FAM-xxxx`) is created at first contact, one per family. Both parents share it.
+- **Lead ID** (`LD-xxxxx`) is created each time a child applies. One family can have many.
+- **Student ID** (`STUID-xxxx`) is issued only when a lead reaches Enrolled and stays with the child for the whole school life.
+
+The **Families** view lists every family with its leads, Student IDs and siblings already at the school.
 
 Tracked stages: Open House Registration → Form Purchase → Assessment (Test) → Accepted → Payment → New Student Application Form → Enrolled.
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Family ID Blueprint</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +46,17 @@ svg{display:block;width:100%;height:auto;font-family:var(--font)}
 .split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
 #lc svg{min-width:560px}
 #arch svg{min-width:820px}
-#fam svg{min-width:640px}
+#fam svg{min-width:680px}
+.idc{display:inline-flex;align-items:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;white-space:nowrap;border:1px solid;justify-self:start}
+.idc.fam{color:#8A5A12;background:#FBF3E2;border-color:#D9B676}
+.idc.lead{color:#2F6FB0;background:#EAF1FA;border-color:#9FBEE3}
+.idc.stu{color:#1F7A48;background:#E3F3EA;border-color:#8CC7A6}
+.idrules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.idrules > div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+.idrules p{font-size:14px;color:var(--ink-2)}
+.idrules ul{font-size:13.5px;color:var(--ink-2)}
+.idflow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);background:var(--accent-soft);border-radius:10px;padding:10px 14px}
+@media (max-width:760px){.idrules{grid-template-columns:minmax(0,1fr)}}
 .ring{fill:var(--surface-2);stroke:var(--line-2);stroke-width:1.5}
 .ringarrow{fill:none;stroke:var(--ink-3);stroke-width:2.4}
 .core{fill:var(--surface);stroke:var(--accent);stroke-width:2.5}
@@ -212,10 +222,16 @@ table.cost td.tools{font-size:13px;color:var(--accent);font-weight:600;min-width
   <!-- FAMILY -->
   <section id="fam">
     <h2>3. Family ID in practice</h2>
-    <p class="intro">An example family (fictional data). Each member has their own role and stage, all tied to one family number.</p>
+    <p class="intro">Three kinds of ID work together. One family has one Family ID, each application gets its own Lead ID, and a Student ID is issued only when that lead reaches Enrolled.</p>
+    <div class="idrules">
+      <div><span class="idc fam">FAM-xxxx</span><h3>Family ID</h3><p><b>Created at first contact</b>: Open House sign-up, referral or sibling registration.</p><ul><li>One per family, shared by both parents</li><li>Holds every child, bill and message</li><li>Parents log in with it</li></ul></div>
+      <div><span class="idc lead">LD-xxxxx</span><h3>Lead ID</h3><p><b>Created each time a child applies.</b> One family can have many.</p><ul><li>Tracks the 7 stages from Open House to Enrolled</li><li>Records source, campaign and PIC</li><li>Kept as admissions history, even after enrollment or drop</li></ul></div>
+      <div><span class="idc stu">STUID-xxxx</span><h3>Student ID</h3><p><b>Issued only when the lead reaches Enrolled.</b></p><ul><li>One per child, kept for the whole school life (SD → SMP → SMA)</li><li>Used for classes, report cards and billing</li><li>Never issued to a lead that drops</li></ul></div>
+    </div>
+    <div class="idflow"><span class="idc fam">1 FAM</span><span>has many</span><span class="idc lead">LD</span><span>and each enrolled child gets exactly one</span><span class="idc stu">STUID</span></div>
     <figure>
       <div class="scroll" id="figC"></div>
-      <figcaption><b>Three children, three different stages, one family.</b> Aisyah is already a student (Grow). Her older brother Rafif is applying for the SMP acceleration class, so the Enrollment Desk knows right away that he has a sibling at the school and offers the sibling discount. Her younger brother Kenzie is not in school yet and will be invited to next year's kindergarten Open House. Both parents see all three children in one Family App and pay every bill at once.</figcaption>
+      <figcaption><b>One family, three children, three different ID states.</b> Aisyah applied in 2025 (LD-25031), was enrolled, and now carries STUID-2514. Her older brother Rafif is applying for SMP acceleration under LD-26014, and his Student ID stays pending until he reaches Enrolled; because he shares FAM-0231 with Aisyah, the Enrollment Desk sees the sibling link right away and applies the sibling discount. Kenzie has no Lead ID yet; he gets one when the family signs him up for the kindergarten Open House. A child can have more than one Lead ID over time (for example SD, then SMP acceleration), but only ever one Student ID.</figcaption>
     </figure>
   </section>
 
@@ -481,23 +497,41 @@ const rad = d => d*Math.PI/180;
 
 /* ---------- Figure C: one family ---------- */
 (function(){
-  let s=`<rect x="310" y="132" width="220" height="92" rx="12" class="famcore"/>
-    <text x="420" y="160" class="famT" text-anchor="middle">FAM-0231</text>
-    <text x="420" y="180" class="bT" text-anchor="middle">Pratama family</text>
-    <text x="420" y="202" class="bS" text-anchor="middle">1 account · 1 bill · 1 inbox</text>`;
-  [[20,40,'Andi Pratama','Father · primary guardian','Family App','--c-enroll'],
-   [20,244,'Dewi Anggraini','Mother · guardian','Family App','--c-enroll'],
-   [620,20,'Aisyah Pratama','Student · Grade 3','GROW','--c-grow'],
-   [620,142,'Rafif Pratama','Lead · SMP Acceleration','ENROLL · Form Purchase','--c-attract'],
-   [620,264,'Kenzie Pratama','Younger brother · age 4','ATTRACT · KG 2027','--c-advocate']].forEach(([x,y,n,r,st,cv])=>{
-     s+= x<300 ? `<line x1="${x+200}" y1="${y+38}" x2="310" y2="178" class="ln"/>` : `<line x1="530" y1="178" x2="${x}" y2="${y+38}" class="ln"/>`;
-     s+=`<rect x="${x}" y="${y}" width="200" height="76" rx="10" class="n"/>
-       <text x="${x+14}" y="${y+24}" class="bT">${esc(n)}</text>
-       <text x="${x+14}" y="${y+43}" class="bS">${esc(r)}</text>
-       <text x="${x+14}" y="${y+62}" class="chipT" style="fill:var(${cv})">${esc(st)}</text>`;
+  const chip=(x,y,label,kind)=>{
+    const w=label.length*7.4+16;
+    const st={fam:'fill:#FBF3E2;stroke:#D9B676',lead:'fill:#EAF1FA;stroke:#9FBEE3',stu:'fill:#E3F3EA;stroke:#8CC7A6',none:'fill:none;stroke:#B9CFC2;stroke-dasharray:4 3'}[kind];
+    const tc={fam:'#8A5A12',lead:'#2F6FB0',stu:'#1F7A48',none:'#7A9687'}[kind];
+    return {w, svg:`<rect x="${x}" y="${y}" width="${w}" height="22" rx="5" style="${st};stroke-width:1.2"/><text x="${x+8}" y="${y+15}" style="fill:${tc};font-family:ui-monospace,Menlo,monospace;font-size:12px;font-weight:700">${label}</text>`};
+  };
+  let s=`<rect x="290" y="150" width="220" height="100" rx="12" class="famcore"/>`;
+  const fc=chip(362,166,'FAM-0231','fam'); s+=fc.svg;
+  s+=`<text x="400" y="212" class="bT" text-anchor="middle">Pratama family</text>
+    <text x="400" y="232" class="bS" text-anchor="middle">1 login · 1 bill · 1 inbox</text>`;
+  [[20,70,'Andi Pratama','Father · primary guardian'],[20,254,'Dewi Anggraini','Mother · guardian']].forEach(([x,y,n,r])=>{
+    s+=`<line x1="${x+210}" y1="${y+38}" x2="290" y2="200" class="ln"/>
+      <rect x="${x}" y="${y}" width="210" height="76" rx="10" class="n"/>
+      <text x="${x+14}" y="${y+24}" class="bT">${esc(n)}</text>
+      <text x="${x+14}" y="${y+43}" class="bS">${esc(r)}</text>
+      <text x="${x+14}" y="${y+62}" class="chipT" style="fill:var(--c-enroll)">Logs in with FAM-0231</text>`;
+  });
+  [[590,14,'Aisyah Pratama','Student · Grade 3','LD-25031','stu','STUID-2514','GROW · enrolled 2025','--c-grow'],
+   [590,146,'Rafif Pratama','Applying · SMP Acceleration','LD-26014','none','STUID pending','ENROLL · Form Purchase','--c-attract'],
+   [590,278,'Kenzie Pratama','Younger brother · age 4',null,null,null,'ATTRACT · KG Open House 2027','--c-advocate']].forEach(([x,y,n,r,ld,sk,stu,st,cv])=>{
+    s+=`<line x1="510" y1="200" x2="${x}" y2="${y+54}" class="ln"/>
+      <rect x="${x}" y="${y}" width="300" height="108" rx="10" class="n"/>
+      <text x="${x+14}" y="${y+24}" class="bT">${esc(n)}</text>
+      <text x="${x+14}" y="${y+42}" class="bS">${esc(r)}</text>`;
+    if (ld){
+      const a=chip(x+14,y+52,ld,'lead'); s+=a.svg;
+      s+=`<text x="${x+14+a.w+6}" y="${y+68}" class="bS">›</text>`;
+      s+=chip(x+14+a.w+18,y+52,stu,sk).svg;
+    } else {
+      s+=chip(x+14,y+52,'No lead ID yet','none').svg;
+    }
+    s+=`<text x="${x+14}" y="${y+96}" class="chipT" style="fill:var(${cv})">${esc(st)}</text>`;
   });
   document.getElementById('figC').innerHTML =
-    `<svg viewBox="0 0 840 360" role="img" aria-label="Example Family ID linking two parents, a current student, an older sibling who is an admissions lead, and a younger sibling to be nurtured for kindergarten.">${s}</svg>`;
+    `<svg viewBox="0 0 900 400" role="img" aria-label="Family FAM-0231 links two parents and three children. Aisyah has lead ID LD-25031 and student ID STUID-2514 because she is enrolled. Rafif has lead ID LD-26014 and no student ID yet because he is still applying. Kenzie has no lead ID yet and will get one when he applies for kindergarten.">${s}</svg>`;
 })();
 })();
 </script>

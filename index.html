@@ -197,6 +197,21 @@ table{border-collapse:collapse;width:100%}
 .lcard b{font-size:13px}
 .lcard .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11.5px;color:var(--ink-3)}
 
+/* IDs */
+.idc{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11.5px;font-weight:600;padding:2px 7px;border-radius:6px;white-space:nowrap;border:1px solid}
+.idc.fam{color:#8A5A12;background:#FBF3E2;border-color:#EBD3A6}
+.idc.lead{color:#2F6FB0;background:#EAF1FA;border-color:#C5D8EF}
+.idc.stu{color:#1F7A48;background:#E3F3EA;border-color:#B7DEC8}
+.idc.none{color:var(--ink-3);background:transparent;border-style:dashed;border-color:var(--line-2)}
+.idsep{color:var(--ink-3);margin:0 3px;font-size:12px}
+.idrow{display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.tbl td .ids{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.famleads{display:flex;flex-wrap:wrap;gap:6px}
+.famleads button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:5px 8px;font-size:12.5px;background:var(--surface)}
+.famleads button:hover{border-color:var(--accent)}
+.famleads button:focus-visible{outline:2px solid var(--accent)}
+.idlegend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.idlegend span{display:inline-flex;align-items:center;gap:6px}
 /* Drawer */
 .scrim{position:fixed;inset:0;background:rgba(10,16,30,.45);z-index:20}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--surface);z-index:21;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.2);animation:slide .22s ease}
@@ -341,26 +356,38 @@ function buildLeads(){
   for (let i=bag.length-1;i>0;i--){ const j=Math.floor(R()*(i+1)); [bag[i],bag[j]]=[bag[j],bag[i]]; }
   const base = [17,15,14,11,10,9,24];
   const out = [];
+  let famObj = null, famLeft = 0, famSeq = 0, legacyStu = 2403;
   for (let i=0;i<100;i++){
     const src = SRC[bag[i]];
     let stage = i<7 ? i : STAGES.indexOf(wpick(STAGES, base.map((w,k)=>w*Math.pow(src.q,k))));
     const prog = wpick(PROGRAMS, PROGRAMS.map(p=>p.w));
+    if (famLeft<=0){
+      famSeq++;
+      const ff = pick(FAM);
+      famObj = { id:'FAM-'+String(200+famSeq).padStart(4,'0'), fam:ff,
+        dad:pick(DADS)+' '+ff, mom:pick(MOMS)+' '+pick(MOMFAM),
+        phone:'0812-'+int(1000,9999)+'-'+int(1000,9999),
+        email:pick(['ortu','parent','fam','keluarga'])+'.'+ff.toLowerCase()+int(1,99)+'@mail.test',
+        extra:[] };
+      const exN = wpick([0,1,2],[55,35,10]);
+      for (let k=0;k<exN;k++){
+        const sb = R()<0.5, here = R()<0.35, age = int(4,17);
+        legacyStu += int(1,9);
+        famObj.extra.push({ name:(sb?pick(BOYS):pick(GIRLS))+' '+ff, age, here,
+          studentId: here ? 'STUID-'+legacyStu : null,
+          note: here ? 'Grade '+Math.max(1,Math.min(12,age-6))+' here' : (age<6 ? 'Not in school yet' : 'Another school') });
+      }
+      famLeft = wpick([1,2,3],[72,21,7]);
+    }
+    famLeft--;
     const boy = R()<0.5;
-    const fam = pick(FAM);
+    const fam = famObj.fam;
     const first = boy ? pick(BOYS) : pick(GIRLS);
     const middle = R()<0.55 ? ' ' + (boy ? pick(BOYS) : pick(GIRLS)) : '';
     const student = first + middle + ' ' + fam;
-    const dad = pick(DADS) + ' ' + fam;
-    const mom = pick(MOMS) + ' ' + pick(MOMFAM);
-    const sibN = wpick([0,1,2],[50,35,15]);
+    const dad = famObj.dad;
+    const mom = famObj.mom;
     const sibs = [];
-    for (let k=0;k<sibN;k++){
-      const sb = R()<0.5;
-      const here = R()<0.3;
-      const age = int(4,17);
-      sibs.push({ name:(sb?pick(BOYS):pick(GIRLS))+' '+fam, age, here,
-        note: here ? (age<12 ? 'Grade '+Math.max(1,age-6)+' here' : 'Grade '+Math.min(12,age-6)+' here') : (age<6 ? 'Kindergarten' : 'Another school') });
-    }
     let status = 'active';
     let dropReason = null;
     if (stage<5 && i>=7 && R()<0.13){ status='dropped'; dropReason = DROP[stage]; }
@@ -382,17 +409,35 @@ function buildLeads(){
     out.push({
       id:'LD-26' + n, student, gender: boy?'Male':'Female', dob: (2026-(prog.id==='sd'?9:prog.id==='smp'?12:15))+'-'+String(int(1,12)).padStart(2,'0')+'-'+String(int(1,28)).padStart(2,'0'),
       program:prog.id, school: pick(SCH[prog.lvl]), father:dad, mother:mom,
-      phone:'0812-' + int(1000,9999) + '-' + int(1000,9999),
-      email:(pick(['ortu','parent','fam','keluarga'])+'.'+fam.toLowerCase()+int(1,99)+'@mail.test'),
+      phone:famObj.phone,
+      email:famObj.email,
+      familyId:famObj.id, fam:famObj, studentId:null,
       siblings:sibs, source:src.id, campaign:pick(src.camp), pic, stage, status, dropReason,
       dates, next, score, log:[],
       reason: pick(['Child already ahead in maths and science','Wants 2-year track to save time','Recommended by current teacher','Olympiad participant','Looking for a more challenging curriculum','Sibling studies here']),
     });
   }
+  // Student IDs: issued only when a lead reaches Enrolled, in enrollment-date order
+  out.filter(l=>l.status==='enrolled').sort((a,b)=>a.dates[6]-b.dates[6]).forEach(l=>{ l.studentId = nextStudentId(); });
   out.sort((a,b)=>b.dates[0]-a.dates[0]);
   return out;
 }
+let STU_SEQ = 0;
+function nextStudentId(){ STU_SEQ++; return 'STUID-27'+String(STU_SEQ).padStart(2,'0'); }
 const LEADS = buildLeads();
+// Families: one Family ID holds many lead IDs
+const FAMILIES = (()=>{ const m = new Map(); LEADS.forEach(l=>{ if(!m.has(l.familyId)) m.set(l.familyId,{ id:l.familyId, f:l.fam, leads:[] }); m.get(l.familyId).leads.push(l); }); return [...m.values()].sort((a,b)=>a.id.localeCompare(b.id)); })();
+const famOf = l => FAMILIES.find(f=>f.id===l.familyId);
+function siblingsOf(l){
+  const fam = famOf(l);
+  const applying = fam.leads.filter(x=>x!==l).map(x=>({ name:x.student, lead:x }));
+  return applying.concat(fam.f.extra);
+}
+LEADS.forEach(l=>{ l.siblings = siblingsOf(l); });
+function idChain(l){
+  return `<span class="idc fam">${l.familyId}</span><span class="idsep">›</span><span class="idc lead">${l.id}</span><span class="idsep">›</span>`+
+    (l.studentId ? `<span class="idc stu">${l.studentId}</span>` : `<span class="idc none" title="Issued when the lead reaches Enrolled">STUID pending</span>`);
+}
 
 /* ========================================================= */
 const S = {
@@ -439,6 +484,7 @@ const I = {
   dash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5h16M6 10h12M8 15h8M10 20h4"/></svg>',
   board:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/></svg>',
   leads:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.3-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.4 3.6 5.2"/></svg>',
+  fam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg>',
   x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
 };
 
@@ -494,6 +540,7 @@ function render(){
       <nav class="nav" aria-label="Main">
         <button data-v="dash" ${S.view==='dash'?'aria-current="page"':''}>${I.dash}Dashboard</button>
         <button data-v="board" ${S.view==='board'?'aria-current="page"':''}>${I.board}Pipeline board</button>
+        <button data-v="families" ${S.view==='families'?'aria-current="page"':''}>${I.fam}Families<span class="count">${FAMILIES.length}</span></button>
         <button data-v="leads" ${S.view==='leads'?'aria-current="page"':''}>${I.leads}Leads<span class="count">${LEADS.length}</span></button>
       </nav>
       <div class="side-foot">
@@ -508,6 +555,7 @@ function render(){
   $('#logout').onclick = ()=>{ S.user=null; try{ sessionStorage.removeItem('ced-user'); }catch(e){} render(); };
   if (S.view==='dash') renderDash();
   else if (S.view==='board') renderBoard();
+  else if (S.view==='families') renderFamilies();
   else renderLeads();
   if (S.open) renderDrawer();
 }
@@ -586,7 +634,7 @@ function renderDash(){
     </div>
 
     <section class="kpis" aria-label="Summary">
-      <div class="kpi"><div class="eyebrow">Total leads</div><div class="v">${L.length}</div><div class="d">${grp.map(g=>`${GROUPS[g.g].label.split(' ')[0]} ${g.n}`).join(' · ')}</div></div>
+      <div class="kpi"><div class="eyebrow">Total leads</div><div class="v">${L.length}<span style="font-size:15px;color:var(--ink-3);font-weight:600"> from ${new Set(L.map(l=>l.familyId)).size} families</span></div><div class="d">${grp.map(g=>`${GROUPS[g.g].label.split(' ')[0]} ${g.n}`).join(' · ')}</div></div>
       <div class="kpi"><div class="eyebrow">In pipeline</div><div class="v">${active}</div><div class="d">${dropped} dropped so far</div></div>
       <div class="kpi"><div class="eyebrow">Enrolled</div><div class="v">${enrolled}<span style="font-size:15px;color:var(--ink-3);font-weight:600"> / ${seats} seats</span></div><div class="meter" aria-hidden="true"><i style="width:${Math.min(100,pct(enrolled,seats))}%"></i></div></div>
       <div class="kpi"><div class="eyebrow">Lead → enrolled</div><div class="v">${pct(enrolled,L.length)}%</div><div class="d">Accepted → enrolled ${pct(enrolled,reached[3])}%</div></div>
@@ -644,7 +692,7 @@ function renderBoard(){
   const cols = STAGES.map((s,i)=>{
     const ls = L.filter(l=>l.stage===i && l.status!=='dropped').sort((a,b)=>(a.next||Infinity)-(b.next||Infinity));
     return `<div class="col"><div class="col-h"><b><span class="dot" style="background:${stageColor(i)}"></span>${s.short}</b><span>${ls.length}</span></div>
-      ${ls.map(l=>`<button class="lcard" data-open="${l.id}"><b>${esc(l.student)}</b><span class="meta">${PROG[l.program].short} · ${srcTag(l)}</span><span class="meta">${esc(l.pic)} ${i<6?fuPill(l):`<span class="pill" style="--c:var(--good)">Enrolled ${fmt(l.dates[6])}</span>`}</span></button>`).join('') || '<div class="empty" style="padding:20px">No leads</div>'}
+      ${ls.map(l=>`<button class="lcard" data-open="${l.id}"><b>${esc(l.student)}</b><span class="meta">${PROG[l.program].short} · ${srcTag(l)}</span><span class="meta">${esc(l.pic)} ${i<6?fuPill(l):`<span class="idc stu">${l.studentId}</span>`}</span></button>`).join('') || '<div class="empty" style="padding:20px">No leads</div>'}
     </div>`;
   }).join('');
   const dr = L.filter(l=>l.status==='dropped').length;
@@ -656,6 +704,32 @@ function renderBoard(){
   $('[data-dropped]').onclick=()=>goLeads({status:'dropped'});
 }
 
+/* ---------- Families ---------- */
+function renderFamilies(){
+  const L = scoped(); const ids = new Set(L.map(l=>l.familyId));
+  const fams = FAMILIES.filter(f=>ids.has(f.id));
+  const multi = fams.filter(f=>f.leads.length>1).length;
+  const stu = L.filter(l=>l.studentId).length;
+  $('#main').innerHTML = `
+    <div class="topbar"><div><div class="eyebrow">One Family ID, many leads</div><h1>Families</h1><p>${fams.length} families · ${multi} with more than one child applying · ${stu} Student IDs issued this intake.</p></div>${globalFilters()}</div>
+    <div class="idlegend"><span><span class="idc fam">FAM-xxxx</span> created at first contact, one per family</span><span class="idsep">›</span><span><span class="idc lead">LD-xxxxx</span> one per child per application</span><span class="idsep">›</span><span><span class="idc stu">STUID-xxxx</span> issued only at Enrolled, kept for the whole school life</span></div>
+    <section class="card" style="padding:0;overflow:hidden">
+      <div class="tbl-wrap" style="border:0;border-radius:0">
+        <table class="tbl"><thead><tr><th>Family ID</th><th>Family</th><th>Leads (children applying)</th><th>Already studying here</th><th>Enrolled</th></tr></thead>
+        <tbody>${fams.map(f=>{
+          const here = f.f.extra.filter(x=>x.here);
+          return `<tr style="cursor:default">
+            <td><span class="idc fam">${f.id}</span></td>
+            <td><span class="t">${esc(f.f.fam)}</span><span class="s">${esc(f.f.dad)} · ${esc(f.f.mom)}</span></td>
+            <td><div class="famleads">${f.leads.map(x=>`<button data-open="${x.id}"><span class="idc lead">${x.id}</span>${esc(x.student.split(' ')[0])} ${stagePill(x)}${x.studentId?` <span class="idc stu">${x.studentId}</span>`:''}</button>`).join('')}</div></td>
+            <td>${here.length?here.map(x=>`<div style="font-size:12.5px">${esc(x.name.split(' ')[0])} <span class="idc stu">${x.studentId}</span></div>`).join(''):'<span class="muted">—</span>'}</td>
+            <td style="white-space:nowrap"><b>${f.leads.filter(x=>x.studentId).length}</b> <span class="muted">of ${f.leads.length}</span></td></tr>`; }).join('')}</tbody></table>
+      </div>
+    </section>`;
+  bindGlobal();
+  document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>openLead(b.dataset.open));
+}
+
 /* ---------- Leads ---------- */
 function filteredLeads(){
   const q = S.f.q.trim().toLowerCase();
@@ -663,7 +737,7 @@ function filteredLeads(){
     (S.f.source==='all' || l.source===S.f.source) &&
     (S.f.stage==='all' || (l.stage===+S.f.stage)) &&
     (S.f.status==='all' || (S.f.status==='due' ? isDue(l) : l.status===S.f.status)) &&
-    (!q || [l.id,l.student,l.father,l.mother,l.school,l.siblings.map(s=>s.name).join(' ')].join(' ').toLowerCase().includes(q)));
+    (!q || [l.id,l.familyId,l.studentId||'',l.student,l.father,l.mother,l.school,l.siblings.map(s=>s.name).join(' ')].join(' ').toLowerCase().includes(q)));
   const by = {
     recent:(a,b)=>b.dates[0]-a.dates[0],
     followup:(a,b)=>(a.next||Infinity)-(b.next||Infinity),
@@ -678,7 +752,7 @@ function renderLeads(){
     <div class="topbar"><div><div class="eyebrow">All sources are leads</div><h1>Leads</h1><p>${L.length} of ${scoped().length} leads shown. Click a row to open the student's tracking page.</p></div>${globalFilters()}</div>
     <section class="card" style="padding:16px;display:grid;gap:14px">
       <div class="toolbar">
-        <input class="input" id="q" type="search" placeholder="Search student, parent, sibling, school or ID" value="${esc(S.f.q)}" aria-label="Search leads">
+        <input class="input" id="q" type="search" placeholder="Search name, school, FAM / LD / STUID" value="${esc(S.f.q)}" aria-label="Search leads">
         <select class="select" id="fs" aria-label="Source"><option value="all">All sources</option>${SOURCES.map(s=>`<option value="${s.id}" ${S.f.source===s.id?'selected':''}>${s.label}</option>`).join('')}</select>
         <select class="select" id="fst" aria-label="Current stage"><option value="all">Any stage</option>${STAGES.map((s,i)=>`<option value="${i}" ${S.f.stage===String(i)?'selected':''}>${s.name}</option>`).join('')}</select>
         <select class="select" id="fstat" aria-label="Status">${[['all','Any status'],['active','Active'],['due','Follow-up due'],['enrolled','Enrolled'],['dropped','Dropped']].map(([k,l])=>`<option value="${k}" ${S.f.status===k?'selected':''}>${l}</option>`).join('')}</select>
@@ -687,9 +761,9 @@ function renderLeads(){
         <button class="btn small" id="csv" style="margin-left:auto">Copy as CSV</button>
       </div>
       <div class="tbl-wrap">
-        <table class="tbl"><thead><tr><th>Lead</th><th>Student</th><th>Parents</th><th>Previous school</th><th>Source</th><th>Stage</th><th>PIC</th><th>Follow-up</th></tr></thead>
+        <table class="tbl"><thead><tr><th>IDs</th><th>Student</th><th>Parents</th><th>Previous school</th><th>Source</th><th>Stage</th><th>PIC</th><th>Follow-up</th></tr></thead>
         <tbody>${L.map(l=>`<tr data-open="${l.id}" tabindex="0">
-          <td class="mono">${l.id}</td>
+          <td><span class="ids"><span class="idc fam">${l.familyId}</span><span class="idc lead">${l.id}</span>${l.studentId?`<span class="idc stu">${l.studentId}</span>`:''}</span></td>
           <td><span class="t">${esc(l.student)}</span><span class="s">${PROG[l.program].short} · ${PROG[l.program].entry}${l.siblings.length?` · ${l.siblings.length} sibling${l.siblings.length>1?'s':''}`:''}</span></td>
           <td><span class="t" style="font-weight:600">${esc(l.father)}</span><span class="s">${esc(l.mother)}</span></td>
           <td>${esc(l.school)}</td>
@@ -712,8 +786,8 @@ function renderLeads(){
   document.querySelectorAll('tr[data-open]').forEach(r=>{ r.onclick=()=>openLead(r.dataset.open); r.onkeydown=e=>{ if(e.key==='Enter') openLead(r.dataset.open); }; });
 }
 function copyCSV(L){
-  const head = ['Lead ID','Student','Gender','Program','Entry grade','Previous school','Father','Mother','Phone','Email','Siblings','Source','Source group','Campaign','Current stage','Status','PIC','Lead created','Next follow-up'];
-  const rows = L.map(l=>[l.id,l.student,l.gender,PROG[l.program].label,PROG[l.program].entry,l.school,l.father,l.mother,l.phone,l.email,l.siblings.map(s=>s.name).join('; '),SRC[l.source].label,GROUPS[SRC[l.source].group].label,l.campaign,STAGES[l.stage].name,l.status,l.pic,fmtY(l.dates[0]),l.next?fmtY(l.next):'']);
+  const head = ['Family ID','Lead ID','Student ID','Student','Gender','Program','Entry grade','Previous school','Father','Mother','Phone','Email','Siblings','Source','Source group','Campaign','Current stage','Status','PIC','Lead created','Next follow-up'];
+  const rows = L.map(l=>[l.familyId,l.id,l.studentId||'',l.student,l.gender,PROG[l.program].label,PROG[l.program].entry,l.school,l.father,l.mother,l.phone,l.email,l.siblings.map(s=>s.name).join('; '),SRC[l.source].label,GROUPS[SRC[l.source].group].label,l.campaign,STAGES[l.stage].name,l.status,l.pic,fmtY(l.dates[0]),l.next?fmtY(l.next):'']);
   const csv = [head,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
   navigator.clipboard.writeText(csv).then(()=>toast(`Copied ${L.length} leads as CSV`)).catch(()=>toast('Copy was blocked by this browser.'));
 }
@@ -747,7 +821,7 @@ function renderDrawer(){
     <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drt">
       <div class="dr-h">
         <div class="row">
-          <div><div class="mono muted">${l.id} · ${esc(p.label)}</div><h2 id="drt" style="margin-top:4px">${esc(l.student)}</h2></div>
+          <div><div class="idrow">${idChain(l)}</div><h2 id="drt" style="margin-top:8px">${esc(l.student)}</h2><div class="muted" style="font-size:12.5px">${esc(p.label)}</div></div>
           <button class="x" id="dclose" aria-label="Close">${I.x}</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${stagePill(l)} ${l.status==='enrolled'?'<span class="pill" style="--c:var(--good)">Enrolled</span>':''} ${fuPill(l)} <span class="muted" style="font-size:12px">PIC ${esc(l.pic)}</span></div>
@@ -772,7 +846,11 @@ function renderDrawer(){
           <dt>Phone (WhatsApp)</dt><dd class="mono" style="font-size:13px">${l.phone}</dd>
           <dt>Email</dt><dd>${esc(l.email)}</dd>
         </dl></div>
-        <div class="section"><h3>Siblings</h3>${l.siblings.length?`<div class="sib">${l.siblings.map(s=>`<div><b>${esc(s.name)}</b><span class="muted">Age ${s.age} · ${esc(s.note)}${s.here?' <span class="pill" style="--c:var(--accent)">Sibling discount</span>':''}</span></div>`).join('')}</div>`:'<span class="muted">No siblings recorded</span>'}</div>
+        <div class="section"><h3>Family ${l.familyId} · ${esc(famOf(l).f.fam)}</h3>
+          <div class="famleads">${famOf(l).leads.map(x=>`<button data-jump="${x.id}" ${x===l?'aria-current="true" style="border-color:var(--accent);background:var(--accent-soft)"':''}><span class="idc lead">${x.id}</span>${esc(x.student.split(' ')[0])}${x.studentId?` <span class="idc stu">${x.studentId}</span>`:''}</button>`).join('')}</div>
+          <p class="muted" style="font-size:12.5px;margin:8px 0 0">${famOf(l).leads.length} lead${famOf(l).leads.length>1?'s':''} in this family. A Student ID is issued only when a lead reaches Enrolled.</p>
+          ${famOf(l).f.extra.length?`<div class="sib" style="margin-top:10px">${famOf(l).f.extra.map(sb=>`<div><b>${esc(sb.name)}</b><span class="muted">Age ${sb.age} · ${esc(sb.note)} ${sb.studentId?`<span class="idc stu">${sb.studentId}</span>`:''}${sb.here?' <span class="pill" style="--c:var(--accent)">Sibling discount</span>':''}</span></div>`).join('')}</div>`:''}
+        </div>
         <div class="section"><h3>Lead source</h3><dl class="kv">
           <dt>Channel</dt><dd>${srcTag(l)} <span class="muted">(${GROUPS[src.group].label})</span></dd>
           <dt>Campaign</dt><dd>${esc(l.campaign)}</dd>
@@ -782,10 +860,11 @@ function renderDrawer(){
         <div class="section"><h3>Activity</h3><div class="log">${log.map(e=>`<div><span>${fmt(e.d)}</span><p style="margin:0">${esc(e.t)} <span>· ${esc(e.by)}</span></p></div>`).join('')}</div></div>
       </div>
     </aside>`;
+  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>openLead(b.dataset.jump));
   $('#dclose').onclick = closeLead; $('#scrim').onclick = closeLead;
   $('#dclose').focus();
   const act = (fn,msg)=>{ fn(); toast(msg); render(); };
-  if ($('#adv')) $('#adv').onclick = ()=>act(()=>{ l.stage++; l.dates.push(TODAY); if (l.stage===6){ l.status='enrolled'; l.next=null; } else l.next=addDays(TODAY,3); }, `${l.student.split(' ')[0]} moved to ${STAGES[l.stage+1].short}`);
+  if ($('#adv')) $('#adv').onclick = ()=>act(()=>{ l.stage++; l.dates.push(TODAY); if (l.stage===6){ l.status='enrolled'; l.next=null; l.studentId = nextStudentId(); l.log.unshift({d:TODAY,t:'Student ID '+l.studentId+' issued',by:S.user.name}); } else l.next=addDays(TODAY,3); }, `${l.student.split(' ')[0]} moved to ${STAGES[l.stage+1].short}`);
   if ($('#fu')) $('#fu').onclick = ()=>act(()=>{ l.log.unshift({d:TODAY,t:'Follow-up call logged, next contact in 3 days',by:S.user.name}); l.next=addDays(TODAY,3); }, 'Follow-up logged. Next contact set for '+fmt(addDays(TODAY,3)));
   if ($('#drop')) $('#drop').onclick = ()=>act(()=>{ l.status='dropped'; l.dropReason='Marked dropped by '+S.user.name; l.next=null; l.log.unshift({d:TODAY,t:'Lead marked dropped',by:S.user.name}); }, 'Lead marked dropped');
   if ($('#react')) $('#react').onclick = ()=>act(()=>{ l.status='active'; l.dropReason=null; l.next=addDays(TODAY,1); l.log.unshift({d:TODAY,t:'Lead reactivated',by:S.user.name}); }, 'Lead reactivated');
