@@ -50,3 +50,11 @@ Each diagram as a separate PNG (3120 px wide) in `docs/diagrams/`:
 - [2-alur-pendaftaran.png](docs/diagrams/2-alur-pendaftaran.png): enrollment flowchart with follow-up and dropped paths
 - [3-login-hak-akses.png](docs/diagrams/3-login-hak-akses.png): login and role access
 - [4-data-per-tahap.png](docs/diagrams/4-data-per-tahap.png): data recorded at each stage
+
+## Family ID Blueprint
+
+An architecture proposal for growing the Enrollment Desk into a school-wide family lifecycle system: the Attract → Enroll → Grow → Continue → Advocate lifecycle, a layered architecture, the Family ID concept, the experience for each role, Home Portal content, CX principles and a phased roadmap.
+
+- [Family-ID-Blueprint.html](docs/blueprint/Family-ID-Blueprint.html): open in a browser
+- [Family-ID-Blueprint.pdf](docs/blueprint/Family-ID-Blueprint.pdf): A4 PDF
+- [Family-ID-Blueprint.png](docs/blueprint/Family-ID-Blueprint.png): full page as one image

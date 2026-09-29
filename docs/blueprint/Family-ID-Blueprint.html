@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family ID Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root, :root[data-theme]{
+  color-scheme:light;
+  --bg:#F6FAF7; --surface:#FFFFFF; --surface-2:#EDF5F0; --line:#DCE9E1; --line-2:#B9CFC2;
+  --ink:#1F3A2C; --ink-2:#4A6857; --ink-3:#7A9687;
+  --accent:#3E9068; --accent-soft:#E1F0E7;
+  --c-attract:#2F7FB0; --c-enroll:#1E97A4; --c-grow:#3E9068; --c-continue:#6A9F36; --c-advocate:#D0822A;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;padding-inline:20px}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 72px;display:grid;gap:48px}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(30px,4.4vw,44px);font-weight:800;line-height:1.1}
+h2{font-size:23px;font-weight:800}
+h3{font-size:15.5px;font-weight:700}
+p{margin:0}
+ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.lede{color:var(--ink-2);max-width:70ch;margin-top:12px;font-size:16px}
+header{display:grid;gap:6px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toc a{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:99px}
+.toc a:hover{border-color:var(--accent)}
+section{display:grid;gap:16px}
+.intro{color:var(--ink-2);max-width:72ch}
+.shift{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.shift div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.shift b{font-size:15px}
+.shift span{font-size:14px;color:var(--ink-2)}
+.from{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:14px}
+.scroll{overflow-x:auto}
+figcaption{font-size:13.5px;color:var(--ink-2);max-width:80ch;border-top:1px solid var(--line);padding-top:12px}
+figcaption b{color:var(--ink)}
+svg{display:block;width:100%;height:auto;font-family:var(--font)}
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;align-items:start}
+#lc svg{min-width:560px}
+#arch svg{min-width:820px}
+#fam svg{min-width:640px}
+.ring{fill:var(--surface-2);stroke:var(--line-2);stroke-width:1.5}
+.ringarrow{fill:none;stroke:var(--ink-3);stroke-width:2.4}
+.core{fill:var(--surface);stroke:var(--accent);stroke-width:2.5}
+.coreT{fill:var(--ink);font-size:22px;font-weight:800;letter-spacing:.02em}
+.coreS{fill:var(--accent);font-size:13.5px;font-weight:700}
+.coreM{fill:var(--ink-3);font-size:10px;font-weight:700;letter-spacing:.1em}
+.hair{stroke:var(--line-2);stroke-width:1}
+.stT{font-size:14px;font-weight:800;letter-spacing:.06em}
+.stM{fill:var(--ink);font-size:12.5px;font-weight:600}
+.stW{fill:var(--ink-3);font-size:12px}
+.bandL{fill:var(--accent);font-size:10.5px;font-weight:700;letter-spacing:.1em}
+.pchip{fill:var(--accent-soft);stroke:none}
+.ent{fill:var(--surface);stroke:var(--ink-3);stroke-width:1.5}
+.idbar{fill:var(--accent)}
+.idT{fill:#fff;font-size:13.5px;font-weight:700}
+.svc{fill:var(--surface);stroke:var(--line-2);stroke-width:1.5}
+.svc.ok{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.data{fill:var(--surface-2);stroke:var(--accent);stroke-width:1.5}
+.intg{fill:var(--bg);stroke:var(--line-2);stroke-width:1.2;stroke-dasharray:4 3}
+.bT{fill:var(--ink);font-size:13px;font-weight:700}
+.bS{fill:var(--ink-3);font-size:11.5px}
+.ln{stroke:var(--ink-3);stroke-width:1.5;fill:none}
+.ln.dash{stroke-dasharray:5 4}
+.lnL{fill:var(--ink-2);font-size:11.5px;font-weight:600}
+.n{fill:var(--surface);stroke:var(--line-2);stroke-width:1.5}
+.famcore{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.famT{fill:var(--accent);font-size:15px;font-weight:800;letter-spacing:.04em}
+.chipT{font-size:11.5px;font-weight:700;letter-spacing:.03em}
+.loops{display:grid;gap:12px}
+.loop{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px}
+.loop h3{display:flex;align-items:center;gap:10px}
+.num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:800;flex:none}
+.loop p{font-size:14px;color:var(--ink-2)}
+.kv{display:grid;grid-template-columns:78px minmax(0,1fr);gap:4px 10px;font-size:13px;margin:0}
+.kv dt{color:var(--ink-3);font-weight:600}
+.kv dd{margin:0}
+.personas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px;align-content:start}
+.pc .who{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.tag{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:99px;white-space:nowrap}
+.pc .home{font-size:13.5px;color:var(--ink-2)}
+.pc .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.pc ul{font-size:13.5px}
+.pc .gain{font-size:13.5px;border-top:1px dashed var(--line-2);padding-top:10px}
+.pc .gain b{color:var(--accent)}
+.sitemap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sm{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:3px}
+.sm b{font-size:14px}
+.sm span{font-size:13px;color:var(--ink-2)}
+.sm.lead{border-color:var(--c-attract);background:color-mix(in srgb,var(--c-attract) 6%,var(--surface))}
+.sm.lead em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--c-attract)}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pr{border-top:3px solid var(--accent);padding-top:12px;display:grid;gap:6px}
+.pr p{font-size:14px;color:var(--ink-2)}
+.road{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ph{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;align-content:start}
+.ph .when{font-size:12px;font-weight:700;color:var(--ink-3)}
+.ph ul{font-size:13.5px}
+.ph .mock{font-size:12.5px;background:var(--accent-soft);border-radius:8px;padding:8px 10px;color:var(--ink)}
+.ph.now{border:2px solid var(--accent)}
+.ask{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.ask ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:14.5px}
+.ask ol span{color:var(--ink-2)}
+.note{font-size:12.5px;color:var(--ink-3)}
+.have{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:2px 8px;border-radius:99px;vertical-align:2px;margin-left:6px}
+@media (max-width:980px){.split{grid-template-columns:minmax(0,1fr)}.road{grid-template-columns:repeat(2,minmax(0,1fr))}.personas,.sitemap,.principles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){body{padding-inline:16px}.shift,.road,.personas,.sitemap,.principles{grid-template-columns:minmax(0,1fr)}figure{padding:14px}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Architecture analysis · preview before implementation</div>
+    <h1>Family ID Blueprint</h1>
+    <p class="lede">How to grow the Enrollment Desk we built into one school system for the whole foundation. Everyone involved (prospective students, parents, students, siblings, teachers, staff and the foundation) is connected through one family identity, so every enrollment becomes the start of a long relationship with that family.</p>
+    <nav class="toc" aria-label="Contents">
+      <a href="#lc">Lifecycle</a><a href="#arch">Architecture</a><a href="#fam">Family ID</a><a href="#people">Experience by role</a><a href="#portal">Home Portal</a><a href="#cx">CX principles</a><a href="#road">Roadmap</a><a href="#next">Decisions</a>
+    </nav>
+  </header>
+
+  <section>
+    <div class="shift">
+      <div><span class="from">Today</span><b>An admissions dashboard</b><span>The Enrollment Desk tracks leads up to Enrolled, and the journey stops there.</span></div>
+      <div><span class="from">Proposed</span><b>A school ecosystem</b><span>After enrollment, the same family moves on to the Family App, classes, activities, report cards, the next school level and referrals.</span></div>
+      <div><span class="from">The key</span><b>One Family ID</b><span>Data is entered once at admission and used by every module, with no retyping.</span></div>
+    </div>
+  </section>
+
+  <!-- LIFECYCLE -->
+  <section id="lc">
+    <h2>1. The family lifecycle</h2>
+    <p class="intro">The five stages from the DH Family ID slide, mapped to system modules and the people who use them. The Enrollment Desk already covers Attract and Enroll.</p>
+    <div class="split">
+      <figure>
+        <div class="scroll" id="figA"></div>
+        <figcaption><b>A loop, not a one-way funnel.</b> Advocate leads back to Attract, because satisfied families bring in new families. The same Family ID sits at the center throughout, so the family's history is kept as they move between stages.</figcaption>
+      </figure>
+      <div class="loops">
+        <div class="loop">
+          <h3><span class="num" style="background:var(--c-enroll)">01</span>Progression</h3>
+          <p>A student moves up to the next school level within the same foundation.</p>
+          <dl class="kv"><dt>Trigger</dt><dd>First-semester report card in Grade 6 or 9, or grades high enough for the acceleration track</dd><dt>In system</dt><dd>A lead is created automatically in the Enrollment Desk with source <b>Internal progression</b> and data already filled in</dd></dl>
+        </div>
+        <div class="loop">
+          <h3><span class="num" style="background:var(--c-grow)">02</span>Family Expansion</h3>
+          <p>A younger or older sibling enrolls too.</p>
+          <dl class="kv"><dt>Trigger</dt><dd>Siblings are recorded with a date of birth. 12 months before a sibling reaches kindergarten or primary age, the family is invited to Open House</dd><dt>In system</dt><dd>Lead with source <b>Sibling</b>; the sibling discount is applied automatically</dd></dl>
+        </div>
+        <div class="loop">
+          <h3><span class="num" style="background:var(--c-advocate)">03</span>Advocacy</h3>
+          <p>Families recommend the school to other families.</p>
+          <dl class="kv"><dt>Trigger</dt><dd>After one semester and a high satisfaction score, the family is invited to give a testimonial and receives a referral code</dd><dt>In system</dt><dd>Counted under the existing <b>Parent Referral</b> source on the dashboard</dd></dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="arch">
+    <h2>2. System architecture</h2>
+    <p class="intro">Six layers from top to bottom. Each role gets its own simple entry point, but all of them share one family login, one set of services and one database. Systems the school already uses are connected, not thrown away.</p>
+    <figure>
+      <div class="scroll" id="figB"></div>
+      <figcaption><b>Green boxes (✓) already exist in our mock-up:</b> the Enrollment Desk in Staff Back-office and Admissions CRM among the core services. Every entry point passes through the same green bar (family login and Family ID), so a parent with three children needs only one account. The dashed line at the bottom is the sync with legacy systems, so staff can keep using the applications they know during the transition.</figcaption>
+    </figure>
+  </section>
+
+  <!-- FAMILY -->
+  <section id="fam">
+    <h2>3. Family ID in practice</h2>
+    <p class="intro">An example family (fictional data). Each member has their own role and stage, all tied to one family number.</p>
+    <figure>
+      <div class="scroll" id="figC"></div>
+      <figcaption><b>Three children, three different stages, one family.</b> Aisyah is already a student (Grow). Her older brother Rafif is applying for the SMP acceleration class, so the Enrollment Desk knows right away that he has a sibling at the school and offers the sibling discount. Her younger brother Kenzie is not in school yet and will be invited to next year's kindergarten Open House. Both parents see all three children in one Family App and pay every bill at once.</figcaption>
+    </figure>
+  </section>
+
+  <!-- PERSONAS -->
+  <section id="people">
+    <h2>4. Experience by role</h2>
+    <p class="intro">What each person sees when they first sign in, the three things they do most often, and what changes compared with how things work today.</p>
+    <div class="personas">
+      <div class="pc"><div class="who"><h3>Prospective students &amp; parents</h3><span class="tag">Home Portal</span></div>
+        <p class="home">Home: programs, facilities, student activities, Open House dates.</p>
+        <div class="lbl">Main tasks</div>
+        <ul><li>Register for Open House with one short form</li><li>Track application status, like tracking a parcel</li><li>Pay for the form and choose a test date</li></ul>
+        <p class="gain"><b>What changes:</b> no need to keep asking for status updates over WhatsApp.</p></div>
+      <div class="pc"><div class="who"><h3>Parents of students</h3><span class="tag">Family App</span></div>
+        <p class="home">Home: all children on one screen, with attendance, assignments, bills and announcements.</p>
+        <div class="lbl">Main tasks</div>
+        <ul><li>Pay school fees for all children in one bill</li><li>Follow progress and report cards</li><li>Report sick leave, message the homeroom teacher, enroll a sibling</li></ul>
+        <p class="gain"><b>What changes:</b> one inbox replaces many WhatsApp groups, and family data is already filled in when enrolling a sibling.</p></div>
+      <div class="pc"><div class="who"><h3>Students</h3><span class="tag">Student space</span></div>
+        <p class="home">Home: today's schedule, assignments and activities.</p>
+        <div class="lbl">Main tasks</div>
+        <ul><li>Open learning materials and submit assignments</li><li>Join class and group discussions</li><li>Sign up for clubs and record achievements</li></ul>
+        <p class="gain"><b>What changes:</b> an achievement portfolio builds up until graduation and supports recommendations for acceleration or the next school level.</p></div>
+      <div class="pc"><div class="who"><h3>Teachers</h3><span class="tag">Teacher Workspace</span></div>
+        <p class="home">Home: today's classes, work to grade, students who need attention.</p>
+        <div class="lbl">Main tasks</div>
+        <ul><li>Enter attendance and grades once</li><li>Share materials and lead discussions</li><li>Message parents</li></ul>
+        <p class="gain"><b>What changes:</b> grades flow straight into report cards and the Family App, with no re-compiling in spreadsheets.</p></div>
+      <div class="pc"><div class="who"><h3>Operations staff</h3><span class="tag">Staff Back-office</span></div>
+        <p class="home">Home by unit: admissions, finance, administration or facilities.</p>
+        <div class="lbl">Main tasks</div>
+        <ul><li>Admissions in the Enrollment Desk <span class="have">already built</span></li><li>Billing and automatic virtual-account payment matching</li><li>Manage room and facility bookings</li></ul>
+        <p class="gain"><b>What changes:</b> enrolled applicants become student records in the SIS without the admin office retyping them.</p></div>
+      <div class="pc"><div class="who"><h3>Foundation</h3><span class="tag">Foundation Dashboard</span></div>
+        <p class="home">Home: a summary across all units and school levels.</p>
+        <div class="lbl">What they monitor</div>
+        <ul><li>Enrollment, retention and progression per level</li><li>Share of families with more than one child, and referral results</li><li>Long-term value per family and facility usage</li></ul>
+        <p class="gain"><b>What changes:</b> decisions come from data across units, not from separate reports by each school.</p></div>
+    </div>
+  </section>
+
+  <!-- PORTAL -->
+  <section id="portal">
+    <h2>5. What the school Home Portal contains</h2>
+    <p class="intro">The school's public face. It shows school life, not only a dashboard. Pages marked in blue create leads that go straight into the Enrollment Desk.</p>
+    <div class="sitemap">
+      <div class="sm"><b>Home</b><span>Activity highlights, latest achievements, upcoming events</span></div>
+      <div class="sm"><b>About &amp; Foundation</b><span>Vision, values, schools under the foundation</span></div>
+      <div class="sm"><b>Levels &amp; Programs</b><span>Kindergarten to senior high, including the acceleration track</span></div>
+      <div class="sm"><b>Facilities &amp; Learning Spaces</b><span>Labs, library, discussion rooms, sports, photo tour</span></div>
+      <div class="sm"><b>Activities &amp; Achievements</b><span>Clubs, competitions, student work (only with parent consent)</span></div>
+      <div class="sm"><b>News &amp; Calendar</b><span>Academic calendar and public events</span></div>
+      <div class="sm lead"><b>Open House &amp; Admissions</b><span>Pick a session, fill in a short form</span><em>→ creates a new lead</em></div>
+      <div class="sm lead"><b>Check Application Status</b><span>Applicants see their own stage</span><em>→ reads an existing lead</em></div>
+      <div class="sm lead"><b>Testimonials &amp; Referral</b><span>Family and alumni stories, referral form</span><em>→ lead with Referral source</em></div>
+    </div>
+  </section>
+
+  <!-- CX -->
+  <section id="cx">
+    <h2>6. Experience principles</h2>
+    <div class="principles">
+      <div class="pr"><h3>One login per family</h3><p>Parents switch between children with one tap. Students have their own login with a more limited view.</p></div>
+      <div class="pr"><h3>WhatsApp for updates, portal for details</h3><p>Notifications go out on WhatsApp because that is where parents are active. The link opens the right page in the Family App.</p></div>
+      <div class="pr"><h3>Enter once, use everywhere</h3><p>Admission data flows into the SIS, billing and report cards. Teachers and admin staff do not retype it.</p></div>
+      <div class="pr"><h3>Show what each role needs</h3><p>Students do not see bills, teachers do not see finance data, and the foundation sees aggregate figures, not personal data.</p></div>
+      <div class="pr"><h3>Protect children's privacy</h3><p>Parent consent is recorded in line with Indonesia's Personal Data Protection Law (Law No. 27 of 2022). Student photos appear on the public portal only with permission.</p></div>
+      <div class="pr"><h3>Language parents understand</h3><p>Statuses read "Waiting for test results", not codes. Screens are designed for phones first.</p></div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="road">
+    <h2>7. Implementation phases</h2>
+    <p class="intro">Built in stages so staff and parents are not overwhelmed. Each phase has a mock-up that can be tested before development.</p>
+    <div class="road">
+      <div class="ph now"><span class="when">Phase 1 · months 0–3</span><h3>Foundation &amp; front door</h3><ul><li>Family ID and single login</li><li>Public Home Portal</li><li>Open House form creates leads directly</li><li>Enrollment Desk connected <span class="have">already built</span></li></ul><div class="mock">Mock-up: Home Portal, Open House form, status check page</div></div>
+      <div class="ph"><span class="when">Phase 2 · months 3–6</span><h3>Connected families</h3><ul><li>Family App: bills, announcements, attendance, report cards</li><li>Finance back-office</li><li>Bank virtual account and WhatsApp integration</li></ul><div class="mock">Mock-up: parent home screen with several children</div></div>
+      <div class="ph"><span class="when">Phase 3 · months 6–12</span><h3>Learning &amp; activities</h3><ul><li>Teacher Workspace</li><li>Learning and discussion spaces</li><li>Student Life and facility booking</li></ul><div class="mock">Mock-up: teacher space and student space</div></div>
+      <div class="ph"><span class="when">Phase 4 · months 12+</span><h3>Sustained growth</h3><ul><li>Journey intelligence and next-best-action</li><li>All three growth loops automated</li><li>Foundation Dashboard and alumni</li></ul><div class="mock">Mock-up: foundation dashboard</div></div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section id="next">
+    <h2>8. Decisions needed before implementation</h2>
+    <div class="ask">
+      <ol>
+        <li><b>Where do we start?</b> <span>I recommend Phase 1 (Home Portal, Open House form and status check), because it connects directly to the existing Enrollment Desk.</span></li>
+        <li><b>Which systems are in use today?</b> <span>For example the SIS, finance software, LMS or attendance system. This decides what gets connected and what gets built new.</span></li>
+        <li><b>Which units sit under the foundation?</b> <span>Kindergarten, primary, junior high, senior high or boarding. This decides the level structure in the portal and dashboards.</span></li>
+        <li><b>Branding:</b> <span>keep a fictional name for the mock-up, or use the school's official name and logo?</span></li>
+      </ol>
+    </div>
+    <p class="note">This document is a proposal for discussion. Family names, figures and timelines are examples.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const f = n => (Math.round(n*10)/10);
+const rad = d => d*Math.PI/180;
+
+/* ---------- Figure A: lifecycle ring ---------- */
+(function(){
+  const CX=390, CY=285, R=215, W=200, H=82;
+  const stages=[
+    ['ATTRACT','--c-attract','Home Portal · Open House','Prospects & parents',-90],
+    ['ENROLL','--c-enroll','Enrollment Desk (built)','Admissions · finance',-18],
+    ['GROW','--c-grow','Classes · activities','Students · teachers',54],
+    ['CONTINUE','--c-continue','Report cards · next level','Parents · homeroom',126],
+    ['ADVOCATE','--c-advocate','Referral · alumni','Parents · alumni',198],
+  ];
+  let s=`<circle cx="${CX}" cy="${CY}" r="${R}" class="ring"/>`;
+  for (const st of stages){
+    const m=st[4]+36, a1=rad(m-8), a2=rad(m+8);
+    s+=`<path d="M${f(CX+R*Math.cos(a1))} ${f(CY+R*Math.sin(a1))}A${R} ${R} 0 0 1 ${f(CX+R*Math.cos(a2))} ${f(CY+R*Math.sin(a2))}" class="ringarrow" marker-end="url(#ma)"/>`;
+  }
+  s+=`<circle cx="${CX}" cy="${CY}" r="104" class="core"/>
+    <text x="${CX}" y="${CY-22}" class="coreT" text-anchor="middle">FAMILY ID</text>
+    <text x="${CX}" y="${CY+6}" class="coreS" text-anchor="middle">One family</text>
+    <text x="${CX}" y="${CY+24}" class="coreS" text-anchor="middle">many journeys</text>
+    <line x1="${CX-60}" y1="${CY+42}" x2="${CX+60}" y2="${CY+42}" class="hair"/>
+    <text x="${CX}" y="${CY+62}" class="coreM" text-anchor="middle">STUDENT ID + FAMILY LINK</text>`;
+  for (const [t,c,m,w,ang] of stages){
+    const L=f(CX+R*Math.cos(rad(ang))-W/2), T=f(CY+R*Math.sin(rad(ang))-H/2);
+    s+=`<rect x="${L}" y="${T}" width="${W}" height="${H}" rx="10" style="fill:var(--surface);stroke:var(${c});stroke-width:2"/>
+      <rect x="${f(L+1)}" y="${f(T+10)}" width="5" height="${H-20}" rx="2.5" style="fill:var(${c})"/>
+      <text x="${f(L+18)}" y="${f(T+25)}" class="stT" style="fill:var(${c})">${t}</text>
+      <text x="${f(L+18)}" y="${f(T+46)}" class="stM">${esc(m)}</text>
+      <text x="${f(L+18)}" y="${f(T+65)}" class="stW">${esc(w)}</text>`;
+  }
+  document.getElementById('figA').innerHTML =
+    `<svg viewBox="0 0 780 575" role="img" aria-label="Lifecycle ring: Attract, Enroll, Grow, Continue and Advocate around one Family ID, each stage mapped to a portal module and the people who use it.">
+    <defs><marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-3)"/></marker></defs>${s}</svg>`;
+})();
+
+/* ---------- Figure B: layered architecture ---------- */
+(function(){
+  const X0=30, CW=158, G=14, col=i=>X0+i*(CW+G), FULL=col(5)+CW-X0;
+  const box=(x,y,w,h,cls,title,sub,sub2)=>{
+    const tx=f(x+w/2), ty=sub? y+22 : y+h/2+5;
+    return `<rect x="${f(x)}" y="${y}" width="${f(w)}" height="${h}" rx="9" class="${cls}"/>`+
+      `<text x="${tx}" y="${ty}" class="bT" text-anchor="middle">${esc(title)}</text>`+
+      (sub?`<text x="${tx}" y="${y+40}" class="bS" text-anchor="middle">${esc(sub)}</text>`:'')+
+      (sub2?`<text x="${tx}" y="${y+56}" class="bS" text-anchor="middle">${esc(sub2)}</text>`:'');
+  };
+  const band=(y,l)=>`<text x="${X0}" y="${y}" class="bandL">${l}</text>`;
+  const vline=(x,y1,y2)=>`<line x1="${f(x)}" y1="${y1}" x2="${f(x)}" y2="${y2}" class="ln" marker-end="url(#mb)"/>`;
+  let s='';
+  const y1=24; s+=band(y1,'WHO USES IT');
+  ['Prospects & parents','Parents of students','Students','Teachers','Operations staff','Foundation'].forEach((p,i)=>{ s+=box(col(i),y1+10,CW,36,'pchip',p); });
+  const y2=114; s+=band(y2,'ENTRY POINTS · EXPERIENCE LAYER');
+  [[0,1,'Public Home Portal','Programs · facilities','Activities · Open House'],
+   [1,2,'Family App','Parents + students · web & mobile','Notifications via WhatsApp'],
+   [3,1,'Teacher Workspace','Classes · grades','Attendance · messages'],
+   [4,1,'Staff Back-office','Enrollment Desk ✓','Finance · facilities'],
+   [5,1,'Foundation Dashboard','All units & levels','Lifecycle · retention']].forEach(([c0,span,t,a,b])=>{
+     s+=box(col(c0),y2+10,span*CW+(span-1)*G,66,'ent',t,a,b); });
+  for (let i=0;i<6;i++) s+=vline(col(i)+CW/2,y1+46,y2+8);
+  const y3=216;
+  s+=`<rect x="${X0}" y="${y3}" width="${FULL}" height="44" rx="9" class="idbar"/>
+    <text x="${f(X0+FULL/2)}" y="${y3+27}" class="idT" text-anchor="middle">One family login (SSO) · Family ID · roles &amp; permissions · data consent (PDP Law)</text>`;
+  [col(0)+CW/2, col(1)+CW+G/2, col(3)+CW/2, col(4)+CW/2, col(5)+CW/2].forEach(x=>{ s+=vline(x,y2+76,y3-2); });
+  const y4=292; s+=band(y4,'CORE SERVICES');
+  const SW=(FULL-3*G)/4;
+  [['Admissions CRM','Leads → Enrolled ✓',1],['Academics / SIS','Classes · grades · report cards'],['Learning & Discussion','Materials · assignments · forums'],['Student Life','Activities · clubs · achievements'],
+   ['Facilities','Rooms · booking · schedules'],['Billing & Payments','Fees · VA · 1 invoice per family'],['Communication','Announcements · WhatsApp · inbox'],['Referral & Alumni','Referral codes · testimonials']].forEach(([t,sub,ok],k)=>{
+     const r=Math.floor(k/4), cc=k%4; s+=box(X0+cc*(SW+G),y4+12+r*70,SW,58,ok?'svc ok':'svc',t,sub); });
+  s+=vline(X0+FULL/2,y3+44,y4+10);
+  const y5=458; s+=band(y5,'DATA');
+  const DW=(FULL-G)/2;
+  s+=box(X0,y5+12,DW,66,'data','Unified Database','Family · Person · Role · Student · Lead','Enrollment · Invoice · Activity');
+  s+=box(X0+DW+G,y5+12,DW,66,'data','Journey Intelligence','Next-best-action for each family','Retention · sibling · referral');
+  s+=vline(X0+SW+G/2,y4+152,y5+10);
+  s+=vline(X0+3*SW+2.5*G,y4+152,y5+10);
+  const y6=572; s+=band(y6,'EXISTING SYSTEMS · INTEGRATED, NOT REPLACED');
+  ['School SIS / ERP','Payment gateway / VA','WhatsApp Business','Google Workspace','Accounting','Attendance / RFID'].forEach((t,i)=>{ s+=box(col(i),y6+12,CW,40,'intg',t); });
+  const mx=X0+DW-60;
+  s+=`<line x1="${f(mx)}" y1="${y5+80}" x2="${f(mx)}" y2="${y6+10}" class="ln dash" marker-end="url(#mb)" marker-start="url(#mbs)"/>
+    <text x="${f(mx+10)}" y="${y5+100}" class="lnL">syncs via API</text>`;
+  document.getElementById('figB').innerHTML =
+    `<svg viewBox="0 0 ${col(5)+CW+30} 640" role="img" aria-label="Layered architecture: six user groups enter through five entry points, share one family login and Family ID, use eight core services on one unified database with journey intelligence, and sync with the school's existing systems.">
+    <defs><marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ink-3)"/></marker>
+    <marker id="mbs" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M10 0L0 5L10 10z" style="fill:var(--ink-3)"/></marker></defs>${s}</svg>`;
+})();
+
+/* ---------- Figure C: one family ---------- */
+(function(){
+  let s=`<rect x="310" y="132" width="220" height="92" rx="12" class="famcore"/>
+    <text x="420" y="160" class="famT" text-anchor="middle">FAM-0231</text>
+    <text x="420" y="180" class="bT" text-anchor="middle">Pratama family</text>
+    <text x="420" y="202" class="bS" text-anchor="middle">1 account · 1 bill · 1 inbox</text>`;
+  [[20,40,'Andi Pratama','Father · primary guardian','Family App','--c-enroll'],
+   [20,244,'Dewi Anggraini','Mother · guardian','Family App','--c-enroll'],
+   [620,20,'Aisyah Pratama','Student · Grade 3','GROW','--c-grow'],
+   [620,142,'Rafif Pratama','Lead · SMP Acceleration','ENROLL · Form Purchase','--c-attract'],
+   [620,264,'Kenzie Pratama','Younger brother · age 4','ATTRACT · KG 2027','--c-advocate']].forEach(([x,y,n,r,st,cv])=>{
+     s+= x<300 ? `<line x1="${x+200}" y1="${y+38}" x2="310" y2="178" class="ln"/>` : `<line x1="530" y1="178" x2="${x}" y2="${y+38}" class="ln"/>`;
+     s+=`<rect x="${x}" y="${y}" width="200" height="76" rx="10" class="n"/>
+       <text x="${x+14}" y="${y+24}" class="bT">${esc(n)}</text>
+       <text x="${x+14}" y="${y+43}" class="bS">${esc(r)}</text>
+       <text x="${x+14}" y="${y+62}" class="chipT" style="fill:var(${cv})">${esc(st)}</text>`;
+  });
+  document.getElementById('figC').innerHTML =
+    `<svg viewBox="0 0 840 360" role="img" aria-label="Example Family ID linking two parents, a current student, an older sibling who is an admissions lead, and a younger sibling to be nurtured for kindergarten.">${s}</svg>`;
+})();
+})();
+</script>
+</body>
+</html>
