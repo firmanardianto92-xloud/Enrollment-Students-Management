@@ -111,6 +111,30 @@ svg{display:block;width:100%;height:auto;font-family:var(--font)}
 .ask ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:14.5px}
 .ask ol span{color:var(--ink-2)}
 .note{font-size:12.5px;color:var(--ink-3)}
+.costlink{font-size:13.5px;font-weight:700;color:var(--accent);text-decoration:none;justify-self:start}
+.ph .costlink{display:inline-block;margin-top:2px;padding:8px 12px;border:1.5px solid var(--accent);border-radius:8px;background:var(--surface)}
+.costlink:hover{text-decoration:underline}
+#cost1{scroll-margin-top:16px}
+.costsum{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
+.costsum div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:4px;align-content:start}
+.costsum .big{background:var(--accent);border-color:var(--accent);color:#fff}
+.costsum .big .lbl,.costsum .big span{color:#E6F3EC}
+.costsum b{font-size:24px;font-weight:800;letter-spacing:-.01em}
+.costsum span{font-size:13px;color:var(--ink-2)}
+.costsum .lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+table.cost{border-collapse:collapse;width:100%;min-width:620px;font-size:14px;font-variant-numeric:tabular-nums}
+table.cost th,table.cost td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.cost th{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2)}
+table.cost td{color:var(--ink-2)}
+table.cost td b{color:var(--ink)}
+table.cost .r{text-align:right;white-space:nowrap;font-weight:700;color:var(--ink)}
+table.cost tr.hl td{background:var(--accent-soft)}
+table.cost tfoot td{border-bottom:0;background:var(--surface-2);font-size:15px;color:var(--ink)}
+.opt{font-size:11px;font-weight:700;color:var(--ink-3);border:1px solid var(--line-2);border-radius:99px;padding:1px 7px;margin-left:4px}
+.assume{background:var(--surface);border:1px dashed var(--line-2);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--ink-2);display:grid;gap:8px}
+.assume b{color:var(--ink)}
+@media (max-width:760px){.costsum{grid-template-columns:minmax(0,1fr)}}
 .have{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--accent);padding:2px 8px;border-radius:99px;vertical-align:2px;margin-left:6px}
 @media (max-width:980px){.split{grid-template-columns:minmax(0,1fr)}.road{grid-template-columns:repeat(2,minmax(0,1fr))}.personas,.sitemap,.principles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){body{padding-inline:16px}.shift,.road,.personas,.sitemap,.principles{grid-template-columns:minmax(0,1fr)}figure{padding:14px}}
@@ -124,7 +148,7 @@ svg{display:block;width:100%;height:auto;font-family:var(--font)}
     <h1>Family ID Blueprint</h1>
     <p class="lede">How to grow the Enrollment Desk we built into one school system for the whole foundation. Everyone involved (prospective students, parents, students, siblings, teachers, staff and the foundation) is connected through one family identity, so every enrollment becomes the start of a long relationship with that family.</p>
     <nav class="toc" aria-label="Contents">
-      <a href="#lc">Lifecycle</a><a href="#arch">Architecture</a><a href="#fam">Family ID</a><a href="#people">Experience by role</a><a href="#portal">Home Portal</a><a href="#cx">CX principles</a><a href="#road">Roadmap</a><a href="#next">Decisions</a>
+      <a href="#lc">Lifecycle</a><a href="#arch">Architecture</a><a href="#fam">Family ID</a><a href="#people">Experience by role</a><a href="#portal">Home Portal</a><a href="#cx">CX principles</a><a href="#road">Roadmap</a><a href="#cost1">Phase 1 cost</a><a href="#next">Decisions</a>
     </nav>
   </header>
 
@@ -258,11 +282,64 @@ svg{display:block;width:100%;height:auto;font-family:var(--font)}
     <h2>7. Implementation phases</h2>
     <p class="intro">Built in stages so staff and parents are not overwhelmed. Each phase has a mock-up that can be tested before development.</p>
     <div class="road">
-      <div class="ph now"><span class="when">Phase 1 · months 0–3</span><h3>Foundation &amp; front door</h3><ul><li>Family ID and single login</li><li>Public Home Portal</li><li>Open House form creates leads directly</li><li>Enrollment Desk connected <span class="have">already built</span></li></ul><div class="mock">Mock-up: Home Portal, Open House form, status check page</div></div>
+      <div class="ph now"><span class="when">Phase 1 · months 0–3</span><h3>Foundation &amp; front door</h3><ul><li>Family ID and single login</li><li>Public Home Portal</li><li>Open House form creates leads directly</li><li>Enrollment Desk connected <span class="have">already built</span></li></ul><div class="mock">Mock-up: Home Portal, Open House form, status check page</div><a class="costlink" href="#cost1">View cost estimate →</a></div>
       <div class="ph"><span class="when">Phase 2 · months 3–6</span><h3>Connected families</h3><ul><li>Family App: bills, announcements, attendance, report cards</li><li>Finance back-office</li><li>Bank virtual account and WhatsApp integration</li></ul><div class="mock">Mock-up: parent home screen with several children</div></div>
       <div class="ph"><span class="when">Phase 3 · months 6–12</span><h3>Learning &amp; activities</h3><ul><li>Teacher Workspace</li><li>Learning and discussion spaces</li><li>Student Life and facility booking</li></ul><div class="mock">Mock-up: teacher space and student space</div></div>
       <div class="ph"><span class="when">Phase 4 · months 12+</span><h3>Sustained growth</h3><ul><li>Journey intelligence and next-best-action</li><li>All three growth loops automated</li><li>Foundation Dashboard and alumni</li></ul><div class="mock">Mock-up: foundation dashboard</div></div>
     </div>
+  </section>
+
+  <!-- COST PHASE 1 -->
+  <section id="cost1">
+    <div class="eyebrow">Phase 1 · months 0–3</div>
+    <h2>Phase 1 cost estimate: from environment setup to training</h2>
+    <p class="intro">An indicative budget range for Foundation &amp; front door, based on typical Indonesian software agency rates. Use it to frame the conversation, then confirm it with vendor quotes once scope is agreed.</p>
+    <div class="costsum">
+      <div class="big"><span class="lbl">One-time investment</span><b>Rp 400–650 million</b><span>Setup, build, launch and training over about 3 months</span></div>
+      <div><span class="lbl">Monthly running cost</span><b>Rp 15–30 million</b><span>Hosting, WhatsApp, maintenance and support after launch</span></div>
+      <div><span class="lbl">Team</span><b>5–6 people</b><span>PM, UI/UX designer, 2 developers, QA, part-time DevOps</span></div>
+    </div>
+    <div class="tblwrap">
+      <table class="cost">
+        <thead><tr><th>#</th><th>Item</th><th>What's included</th><th class="r">Estimate (Rp)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Discovery &amp; UX design</b></td><td>Workshops with admissions and finance, parent interviews, designs for Home Portal, Open House form and status page</td><td class="r">45–70 M</td></tr>
+          <tr><td>2</td><td><b>Environment setup</b></td><td>Cloud staging and production, domain and SSL, CI/CD pipeline, backups, security hardening</td><td class="r">15–25 M</td></tr>
+          <tr><td>3</td><td><b>Development</b></td><td>Family ID and single login, public Home Portal with CMS, Open House form to lead, status check, Enrollment Desk connection</td><td class="r">180–280 M</td></tr>
+          <tr><td>4</td><td><b>Integrations</b></td><td>WhatsApp Business API, transactional email, payment gateway for the form fee</td><td class="r">15–30 M</td></tr>
+          <tr><td>5</td><td><b>Data migration</b></td><td>Clean up and import existing leads and family data</td><td class="r">15–30 M</td></tr>
+          <tr><td>6</td><td><b>Testing &amp; UAT</b></td><td>Functional testing, user acceptance with staff, basic security test</td><td class="r">25–40 M</td></tr>
+          <tr class="hl"><td>7</td><td><b>Training &amp; go-live</b></td><td>Hands-on training for admissions and staff, train-the-trainer, user guide and short videos, go-live support for 2 weeks</td><td class="r">15–25 M</td></tr>
+          <tr><td>8</td><td><b>Portal content</b> <span class="opt">optional</span></td><td>Facility photos and copywriting for the Home Portal</td><td class="r">10–30 M</td></tr>
+          <tr><td>9</td><td><b>Project management</b></td><td>Planning, weekly reporting, coordination with the school</td><td class="r">45–60 M</td></tr>
+          <tr><td>10</td><td><b>Contingency (10%)</b></td><td>Buffer for scope clarifications</td><td class="r">35–60 M</td></tr>
+        </tbody>
+        <tfoot><tr><td></td><td colspan="2"><b>Total one-time (rounded)</b></td><td class="r"><b>400–650 M</b></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="tblwrap">
+      <table class="cost">
+        <thead><tr><th>Monthly after launch</th><th>Notes</th><th class="r">Per month (Rp)</th></tr></thead>
+        <tbody>
+          <tr><td><b>Cloud hosting</b></td><td>Staging and production servers, managed database, backups</td><td class="r">3–6 M</td></tr>
+          <tr><td><b>Domain, SSL &amp; email</b></td><td>Transactional email for confirmations and status updates</td><td class="r">0.5–1 M</td></tr>
+          <tr><td><b>WhatsApp Business API</b></td><td>Charged per message; depends on the number of families</td><td class="r">1–3 M</td></tr>
+          <tr><td><b>Maintenance &amp; support</b></td><td>Bug fixes, security updates, help desk during school hours</td><td class="r">10–20 M</td></tr>
+          <tr><td><b>Payment gateway</b></td><td>Per transaction only, no monthly fee</td><td class="r">per use</td></tr>
+        </tbody>
+        <tfoot><tr><td colspan="2"><b>Total monthly (rounded)</b></td><td class="r"><b>15–30 M</b></td></tr></tfoot>
+      </table>
+    </div>
+    <div class="assume">
+      <b>Assumptions behind these numbers</b>
+      <ul>
+        <li>One foundation with its school units on one platform, up to about 1,000 families in the first year.</li>
+        <li>Custom build on cloud hosting. Using an off-the-shelf CMS for the Home Portal can lower item 3 by roughly 20–30%.</li>
+        <li>Excludes VAT (PPN), hardware, internet at school, and the time of the school's own staff.</li>
+        <li>Phases 2–4 are budgeted separately once Phase 1 is live.</li>
+      </ul>
+    </div>
+    <a class="costlink" href="#road">↑ Back to implementation phases</a>
   </section>
 
   <!-- NEXT -->
